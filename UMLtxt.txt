@@ -1,0 +1,122 @@
+https://www.plantuml.com/plantuml/uml/VLHHJnin37xFhpZnr4x0Jq2CCR59GqD2WcTpSTjikUIK-EvQeVxt9N6RkfJk1HBxy-Sl_dozZGI1XiugumZ30bfilZioj6dUSwXPbxyRFeze-PeFAlR142hbtJq2hMPpfN41WwNcFi2KhaElWJ0T55Ecq-x0fPVD-hBPpDLMDF_chJKQtYmsk2PqEXxq779AmLka02qrFy1fYoKLZNSpGU1fXI5rtmhuBpCQjznHcgwtsA6ZAFlomrS8bbRbsC5wTrEZDxe18cZ_fjTqVapFo_ojXPYLOhUfkezQCMbiVS0Ni0EgWat5ppss2zEMwnskO3G-74ik33MNc6gc3bZ2ZvYgcFCa6Wb3PnpkatSGKVzsJnOs61BvuNrIwsa76NtFLVioPlfyBWoKk4fStJbHpyDilRVQJ-v0y0hMdZKr9sTp_bVsJZGE_W-sP2p-ToKqTB14Dh97r6fXFQIm2RdOPo5YaryHUkzIQLsNxQxTm-3gC2fAJ7doGNy0dD4bonwWmnU34uQJy1Cuj1pbu2EwGGOhyX4SB0j3923JDlcnremOPU0vh_4-47kON34_pkRxO1zyYp4cHp7yTFr0yZDXDqzQyOz2LFkx3Z1zjRQW3GfoNlkZ5A-RuW_mwkhcqrLLUV3NrpV2RyKxLqhuMC529GCklbp8sPy2cepWg99BNdFifH9EvKnrw6EYkgGg9CUbKIKZ9Ho9KhVezD3PVm00
+
+@startuml
+interface Entity {
+int x
+int y
+int xvel
+int yvel
+
+sprite
+
+onDeath()
+default Draw()
+update()
+
+Entity()
+Entity(sprite, x, y)
+}
+interface Collidable extends Entity {
+Collidable
+
+abstract HandleCollision(Collidable other)
+
+}
+
+abstract LivingEntity implements Collidable {
+int health
+int maxhealth
+
+void attack()
+move()
+}
+
+class Enemy extends LivingEntity {
+int scoreValue
+Enemy()
+SpecficEnemyBehavior
+
+}
+
+abstract EntityBehavior {
+abstract update()
+}
+
+abstract EnemyBehavior extends EntityBehavior {
+abstract determineBehaviorBasedOnPlayer()
+
+}
+
+class SpecficEnemyBehavior extends EnemyBehavior{
+
+}
+
+
+class Player extends LivingEntity {
+
+}
+
+class PlayerBehavior implements EntityBehavior {
+int cooldown
+}
+
+class Wall implements Collidable {
+Wall()
+Wall(x, y)
+}
+
+class Projectile implements Collidable {
+int damage
+int speed
+float direction
+}
+
+interface Weapon {
+attack()
+}
+class Gun extends Weapon {
+
+}
+
+class Sword extends Weapon implements Collidable {
+
+}
+
+class GameViewer {
+
+}
+
+class GamePanel {
+
+}
+class MenuPanel {
+
+}
+class GameManager {
+static int lives
+static int Score
+static spawnEnemys()
+static processPlaerInput()
+}
+
+class EntityManager {
+static sprites
+
+static drawAllEntities()
+static updateAllEntities()
+
+}
+
+
+
+Enemy --> SpecficEnemyBehavior
+Gun ..> Projectile
+Player --> PlayerBehavior
+EntityManager -->"*" Collidable 
+EntityManager --> "*" Entity
+LivingEntity --> "*" Weapon
+GameViewer --> GamePanel
+GameViewer --> MenuPanel
+GamePanel --> GameManager
+GameManager --> EntityManager
+@enduml
