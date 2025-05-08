@@ -4,20 +4,19 @@ import java.awt.*;
 import java.awt.image.*;
 import java.awt.geom.*;
 
-public abstract class Entity {
+public abstract class Entity implements ImageObserver {
 	protected float x;
 	protected float y;
 	protected float theta;
 	protected float xvel;
 	protected float yvel;
 	protected float thetavel;
-	protected float width;
-	protected float height;
+	protected int width;
+	protected int height;
 	
-	protected static final java.awt.image.BufferedImage sprite;
-	private static final boolean spriteLoaded;
+
 	
-	public void update(int dt) {
+	public void update(float dt) {
 		this.x += xvel*dt;
 		this.y += yvel*dt;
 		this.x += theta += thetavel*dt;
@@ -34,7 +33,7 @@ public abstract class Entity {
 		g2d.translate(this.x, this.y);
 		g2d.rotate(theta);
 		
-		this.drawDetails();
+		this.drawDetails(g2d);
 		
 		g2d.setTransform(origin);
 	}
@@ -50,5 +49,11 @@ public abstract class Entity {
 	/**
 	 * Anything specific to how the object is drawn
 	 */
-	public abstract void drawDetails();
+	public abstract void drawDetails(Graphics2D g2d);
+	
+	@Override
+	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+		//required to draw images
+		return false;
+	}
 }

@@ -1,12 +1,14 @@
 package csse220final;
 
+import javax.swing.*;
+
 /**
  * Singleton class for managing the game states
  * 
  */
-public class GameManager {
+public class GameManager{
 	private static GameManager gameManager; //singleton
-	private EntityManager entities;
+	private EntityManager entityManager;
 	
 	 /**
 	 * Singleton get instance command, should always be called when interacting with the game manager
@@ -24,7 +26,9 @@ public class GameManager {
 	 */
 	private GameManager() {
 		EntityManager.getInstance().destroy();
-		this.entities = EntityManager.getInstance();
+		this.entityManager = EntityManager.getInstance();
+		
+		//TODO: Add game stjff
 	}
 	
 	
@@ -33,5 +37,25 @@ public class GameManager {
 	 */
 	public void destroy() {
 		GameManager.gameManager = null;
+	}
+	
+	/**
+	 * Called regularly to update everything inside
+	 * 
+	 * @param dt: Time since last update
+	 */
+	public void update(float dt) {
+		this.entityManager.updateAllEntities(dt);
+	}
+	
+	/**
+	 * Draws all game details
+	 * @param g2d
+	 */
+	public void draw(java.awt.Graphics2D g2d) {
+		//TODO: Draw non-entity stuff
+		
+		
+		this.entityManager.drawAllEntities(g2d);
 	}
 }

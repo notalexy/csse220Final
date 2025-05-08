@@ -22,9 +22,12 @@ public class GameViewer {
 		frame.setLocation(0, 0);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+		GamePanel gamePanel = new GamePanel();
+		frame.add(gamePanel);
+		
 		frame.setVisible(true);
 		
-		GamePanel gamePanel = new GamePanel();
 		
 		//debug shortcut to rapidly close windows that eclipse opens up
 		frame.addKeyListener(new KeyAdapter() {

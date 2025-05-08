@@ -1,5 +1,5 @@
 package csse220final;
 
-public class Player extends LivingEntity{
+//public class Player extends LivingEntity{
 
-}
+//}

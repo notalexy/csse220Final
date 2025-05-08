@@ -4,7 +4,7 @@ public abstract class LivingEntity extends Entity{
 	int health;
 	
 	@Override 
-	public void update(int dt) {
+	public void update(float dt) {
 		super.update(dt);
 		if(this.health < 0) this.onDeath();
 	}
