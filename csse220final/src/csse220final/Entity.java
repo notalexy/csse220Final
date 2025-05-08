@@ -4,14 +4,14 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public abstract class Entity {
-	private float x;
-	private float y;
-	private float theta;
-	private float xvel;
-	private float yvel;
-	private float thetavel;
-	private float width;
-	private float height;
+	protected float x;
+	protected float y;
+	protected float theta;
+	protected float xvel;
+	protected float yvel;
+	protected float thetavel;
+	protected float width;
+	protected float height;
 	
 	public void update(int dt) {
 		this.x += xvel*dt;
@@ -39,7 +39,9 @@ public abstract class Entity {
 	/**
 	 * This method gets called once when the object is destroyed
 	 */
-	public abstract void onDeath();
+	public void onDeath() {
+		
+	}
 	
 	/**
 	 * Anything specific to how the object is drawn

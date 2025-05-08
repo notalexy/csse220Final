@@ -9,6 +9,6 @@ import javax.swing.*;
 public class GamePanel extends JComponent{
 	private GameManager manager;
 	public GamePanel() {
-		
+		this.manager = GameManager.getInstance();
 	}
 }
