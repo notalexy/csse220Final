@@ -2,12 +2,17 @@ package csse220final;
 
 public class Wall extends Collidable {
 	
+	private static final java.awt.image.BufferedImage sprite;
+	private static final boolean spriteLoaded;
+	
 	public Wall(float x, float y, int width, int height) {
 		this.movable = false;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		
+		
 		
 		//walls do not move or rotatae
 		this.theta = 0;

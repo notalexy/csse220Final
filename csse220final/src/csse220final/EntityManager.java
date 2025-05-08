@@ -1,9 +1,15 @@
 package csse220final;
 
+import java.util.*;
+
 public class EntityManager {
 	
-	private static EntityManager entityManager;
+	private static EntityManager entityManager; //singleton
 	
+	/**
+	 * Singleton get instance command, should always be called when interacting with the entity manager
+	 * @return The one and only entityManager
+	 */
 	public static EntityManager getInstance() {
 		if (EntityManager.entityManager == null) {
 			EntityManager.entityManager = new EntityManager();

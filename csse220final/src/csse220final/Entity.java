@@ -1,6 +1,7 @@
 package csse220final;
 
 import java.awt.*;
+import java.awt.image.*;
 import java.awt.geom.*;
 
 public abstract class Entity {
@@ -12,6 +13,9 @@ public abstract class Entity {
 	protected float thetavel;
 	protected float width;
 	protected float height;
+	
+	protected static final java.awt.image.BufferedImage sprite;
+	private static final boolean spriteLoaded;
 	
 	public void update(int dt) {
 		this.x += xvel*dt;
