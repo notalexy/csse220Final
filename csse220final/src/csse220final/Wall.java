@@ -8,8 +8,9 @@ import java.awt.geom.*;
 
 public class Wall extends Collidable {
 	
-	private static java.awt.image.BufferedImage sprite;
-	private static boolean spriteLoaded;
+	private java.awt.image.BufferedImage sprite;
+	private boolean spriteLoaded;
+	private static final String FILEPATH = "src/WallSprite.png";
 	
 	public Wall(float x, float y, int width, int height) {
 		this.movable = false;
@@ -26,18 +27,8 @@ public class Wall extends Collidable {
 		this.xvel = 0;
 		this.yvel = 0;
 		
-		if (Wall.sprite == null) {
-		 try {
-             Wall.sprite = ImageIO.read(new File("src/WallSprite.png"));
-             Wall.spriteLoaded = true;
-         } catch (IOException e) {
-             System.err.println("Error loading image: " + e.getMessage());
-             //e.printStackTrace();
-             Wall.spriteLoaded = false;
-             Wall.spriteLoaded = true;
-         }
-		}
-		
+		this.sprite = SpriteLoader.getInstance().getSprite(Wall.FILEPATH);
+		this.spriteLoaded = !(this.sprite == null);
 	}
 	
 	@Override 
@@ -50,7 +41,7 @@ public class Wall extends Collidable {
 	@Override
 	public void drawDetails(Graphics2D g2d) {
 		// TODO Auto-generated method stub
-		 if (spriteLoaded) g2d.drawImage(Wall.sprite, -width/2, -height/2, width, height, this);
+		 if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
 	}
 	
 	@Override

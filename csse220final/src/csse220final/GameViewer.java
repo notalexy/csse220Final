@@ -11,7 +11,8 @@ import javax.swing.*;
  */
 public class GameViewer {
 	// warning: system scaling affects this
-	public static final Dimension WINDOW_SIZE = new Dimension(1707, 1067 - 32);
+	private static final int SCREEN_WIDTH = 1722;
+	public static final Dimension WINDOW_SIZE = new Dimension(SCREEN_WIDTH, 1067 - 32);
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
@@ -19,8 +20,10 @@ public class GameViewer {
 		frame.setSize(WINDOW_SIZE);
 		frame.setTitle("e");
 		
-		frame.setLocation(0, 0);
-
+		frame.setLocation((int)
+				((Toolkit.getDefaultToolkit().getScreenSize().getWidth()-SCREEN_WIDTH)/2)
+				, 0);
+System.out.println((Toolkit.getDefaultToolkit().getScreenSize().getWidth()-SCREEN_WIDTH)/2);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 		GamePanel gamePanel = new GamePanel();
