@@ -1,10 +1,7 @@
 package csse220final;
 
-import java.io.*;
-import javax.imageio.*;
 import java.awt.*;
-import java.awt.image.*;
-import java.awt.geom.*;
+
 
 public class Wall extends Collidable {
 	
@@ -31,10 +28,13 @@ public class Wall extends Collidable {
 		this.spriteLoaded = !(this.sprite == null);
 	}
 	
+	public Wall(int x, int y, int width, int height) {
+		this((float)x, (float)y, width, height);
+	}
+	
 	@Override 
 	public void update(float dt) {
-		this.x += (int)(10.0*(Math.random() - 1.0/2.0));
-		this.theta += (0.5*(Math.random() - 1.0/2.0));
+
 	}
 
 

@@ -17,9 +17,9 @@ public abstract class Entity implements ImageObserver {
 
 	
 	public void update(float dt) {
-		this.x += xvel*dt;
-		this.y += yvel*dt;
-		this.x += theta += thetavel*dt;
+		this.x += this.xvel*dt;
+		this.y += this.yvel*dt;
+		this.theta += this.thetavel*dt;
 		
 	}
 	

@@ -1,6 +1,6 @@
 package csse220final;
 
-public abstract class LivingEntity extends Entity{
+public abstract class LivingEntity extends Collidable{
 	int health;
 	
 	@Override 

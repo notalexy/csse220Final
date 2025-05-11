@@ -11,26 +11,27 @@ import javax.swing.*;
  */
 public class GameViewer {
 	// warning: system scaling affects this
-	private static final int SCREEN_WIDTH = 1722;
-	public static final Dimension WINDOW_SIZE = new Dimension(SCREEN_WIDTH, 1067 - 32);
+	public static final int SCREEN_WIDTH = 1706;
+	public static final int SCREEN_HEIGHT = 1066 - 32;
+	public static final Dimension WINDOW_SIZE = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 
+		frame.setUndecorated(true);
 		frame.setSize(WINDOW_SIZE);
 		frame.setTitle("e");
 		
+		//offset to account for weird scaling issues
 		frame.setLocation((int)
 				((Toolkit.getDefaultToolkit().getScreenSize().getWidth()-SCREEN_WIDTH)/2)
-				, 0);
-System.out.println((Toolkit.getDefaultToolkit().getScreenSize().getWidth()-SCREEN_WIDTH)/2);
+				,0);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 		GamePanel gamePanel = new GamePanel();
 		frame.add(gamePanel);
 		
 		frame.setVisible(true);
-		
 		
 		//debug shortcut to rapidly close windows that eclipse opens up
 		frame.addKeyListener(new KeyAdapter() {
@@ -43,7 +44,7 @@ System.out.println((Toolkit.getDefaultToolkit().getScreenSize().getWidth()-SCREE
 		   	});
 		
 		
-		System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-		System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+		//System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+		//System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getHeight());
 	}
 }

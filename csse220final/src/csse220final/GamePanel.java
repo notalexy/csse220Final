@@ -20,7 +20,7 @@ public class GamePanel extends JComponent{
 	}
 	
 	private void update() {
-		manager.update(1/fps);
+		manager.update(1.0f/fps);
 		repaint();
 	}
 	

@@ -25,17 +25,19 @@ public class GameManager{
 	 * Singleton private constructor class
 	 */
 	private GameManager() {
-		EntityManager.getInstance().destroy();
+		//destroys the entity manager if it exits
+		EntityManager.destroy();
+		//makes a new entityManager
 		this.entityManager = EntityManager.getInstance();
 		
-		//TODO: Add game stjff
+		//TODO: Add game stuff
 	}
 	
 	
 	/**
 	 * Used for deleting the GameManager state such that a new one can be created
 	 */
-	public void destroy() {
+	public static void destroy() {
 		GameManager.gameManager = null;
 	}
 	

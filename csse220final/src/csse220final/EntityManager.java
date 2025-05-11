@@ -7,6 +7,7 @@ public class EntityManager {
 	
 	private static EntityManager entityManager; //singleton
 	private java.util.List<Entity> entities;
+	private final int borderWallSize = 50;
 	/**
 	 * Singleton get instance command, should always be called when interacting with the entity manager
 	 * @return The one and only entityManager
@@ -23,18 +24,40 @@ public class EntityManager {
 	 */
 	private EntityManager() {
 		
-		//Current test methods
+		//Create a list of all entities
 		this.entities = new ArrayList<Entity>();
-		entities.add(new Wall(500, 500, 50, 50));
-		entities.add(new Wall(500, 600, 50, 50));
-		entities.add(new Wall(500, 800, 50, 50));
+		
+		//construct walls around the border
+		int horizontalWalls = GameViewer.SCREEN_WIDTH / borderWallSize;
+		int verticalWalls = GameViewer.SCREEN_HEIGHT / borderWallSize;
+		System.out.println(horizontalWalls);
+		for(int i = 0; i < horizontalWalls; i++) {
+			entities.add(new Wall(i*borderWallSize + (GameViewer.SCREEN_WIDTH - horizontalWalls*borderWallSize)/2 + borderWallSize/2, 
+					 (GameViewer.SCREEN_HEIGHT- verticalWalls*borderWallSize)/2 + borderWallSize/2,
+					 borderWallSize, borderWallSize));
+			entities.add(new Wall(i*borderWallSize + (GameViewer.SCREEN_WIDTH - horizontalWalls*borderWallSize)/2 + borderWallSize/2, 
+					 GameViewer.SCREEN_HEIGHT - (GameViewer.SCREEN_HEIGHT- verticalWalls*borderWallSize)/2 - borderWallSize/2,
+					 borderWallSize, borderWallSize));
+		}
+		for (int i = 0; i < verticalWalls - 2; i++) {
+			entities.add(new Wall((GameViewer.SCREEN_WIDTH - horizontalWalls*borderWallSize)/2 + borderWallSize/2,
+					i*borderWallSize + (GameViewer.SCREEN_HEIGHT - verticalWalls*borderWallSize)/2 + 3*borderWallSize/2,
+					borderWallSize, borderWallSize));
+			entities.add(new Wall( GameViewer.SCREEN_WIDTH - (GameViewer.SCREEN_WIDTH - horizontalWalls*borderWallSize)/2 - borderWallSize/2,
+					i*borderWallSize + (GameViewer.SCREEN_HEIGHT - verticalWalls*borderWallSize)/2 + 3*borderWallSize/2,
+					borderWallSize, borderWallSize));
+		}
+		
+		//spawns the player
+		entities.add(new Player(300, 300, 50, 50));
+		
 	}
 	
 	
 	/**
 	 * Used for deleting the entityManager
 	 */
-	public void destroy() {
+	public static void destroy() {
 		EntityManager.entityManager = null;
 	}
 	
