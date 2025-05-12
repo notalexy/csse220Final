@@ -25,7 +25,7 @@ public class GameViewer {
 		//offset to account for weird scaling issues
 		frame.setLocation((int)
 				((Toolkit.getDefaultToolkit().getScreenSize().getWidth()-SCREEN_WIDTH)/2)
-				,0);
+				,0); //centers the screen horiztonally if the screen width is unexpected, does not re-scale screen due to things depending on pixels
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 		GamePanel gamePanel = new GamePanel();

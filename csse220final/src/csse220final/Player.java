@@ -33,12 +33,13 @@ public class Player extends LivingEntity{
 	
 	@Override 
 	public void update(float dt) {
-		
+		super.update(dt);
+		//randomly imcrements velocities for testing
 		this.xvel += 5.0f * (1.0f - 2.0f*Math.random());
 		this.yvel += 5.0f * (1.0f - 2.0f*Math.random());
 		this.thetavel += 0.5f * (1.0f - 2.0f*Math.random());
 		
-		super.update(dt);
+		
 	}
 
 

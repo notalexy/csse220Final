@@ -38,7 +38,14 @@ public class SpriteLoader {
          } catch (IOException e) {
              System.err.println("Error loading image: " + e.getMessage());
              //e.printStackTrace();
-             return null;
+             try {
+    			 java.awt.image.BufferedImage sprite = ImageIO.read(new File("src/missingTexture.png"));
+    			 sprites.put(filepath, sprite);
+             }
+             catch (IOException f){
+            	 System.err.println("Error loading placeholder texutre, check filepath " + e.getMessage() );      
+            	 
+             }
          }
 		 return sprites.get(filepath);
 	}
