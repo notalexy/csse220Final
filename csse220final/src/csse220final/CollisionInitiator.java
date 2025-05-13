@@ -6,7 +6,6 @@ import java.util.*;
 public abstract class CollisionInitiator extends Collidable {
 	private int radius;
 	
-	public static int count = 0; //debuging
 	
 	
 	//collision initators are ALL circles
@@ -21,8 +20,6 @@ public abstract class CollisionInitiator extends Collidable {
 		//check if point is within the circle
 		if ((point.getX() - this.x)*(point.getX() - this.x) 
 				+ (point.getY() - this.y)*(point.getY() - this.y) <= this.radius*this.radius) {
-			CollisionInitiator.count++;
-			System.out.println("bonk " + CollisionInitiator.count);
 			this.respondToCollision(other, collisionValues.get(1));
 			other.respondToCollision(this, collisionValues.get(1).scalarMultiply(-1));
 		}

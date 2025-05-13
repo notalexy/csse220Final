@@ -30,13 +30,15 @@ public class Vector2D {
 	//vector operations
 	
 	public static float innerProduct(Vector2D one, Vector2D two) {
-		return one.getX() * two.getX() + two.getY()*two.getY();
+		return one.getX() * two.getX() + one.getY()*two.getY();
 	}
 	
 	public static float crossProduct(Vector2D one, Vector2D two) {
 		return one.getX()*two.getY() - one.getY()*two.getX();
 	}
-	
+	/**
+	 * Project one onto two
+	 */
 	public static Vector2D project(Vector2D one, Vector2D two) {
 		return two.unit().scalarMultiply(Vector2D.innerProduct(one, two.unit()));
 	}

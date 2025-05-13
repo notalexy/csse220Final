@@ -55,7 +55,7 @@ public class EntityManager {
 		}
 		
 		//spawns the player
-		addInitiator(new Player(300, 300, 25));
+		addInitiator(new Player(290, 300, 25));
 		
 	}
 	
