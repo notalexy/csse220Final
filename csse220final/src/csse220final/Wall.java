@@ -81,12 +81,16 @@ public class Wall extends Collidable {
 					));
 		}
 		else {
+			
 		//object is (possibly) touching a corner
 		outputs.add(new Vector2D(
 				Math.signum(centersVector.getX())*this.width/2,
 				Math.signum(centersVector.getY())*this.height/2
 				));
+		outputs.add(centersVector.subtract(new Vector2D(this.width/2 * Math.signum(centersVector.getX()), 
+				this.width/2 * Math.signum(centersVector.getY()))).unit());
 		}
+		
 		return outputs;
 	}
 	

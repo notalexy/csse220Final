@@ -1,6 +1,7 @@
 package csse220final;
 /**
  * Vector helper class for performing linear algebra
+ * @author Alex Y
  */
 public class Vector2D {
 	private float x;
@@ -15,24 +16,49 @@ public class Vector2D {
 	public float getY() { return this.y;}
 	
 	//arithmatic operations
+	/**
+	 * Adds one vector to another
+	 * @param The vector to add to this vector
+	 * @return The vector sum
+	 */
 	public Vector2D add(Vector2D other) {
 		return new Vector2D(this.x + other.getX(), this.y + other.getY());
 	}
+	/**
+	 * Subtracts one vector to another
+	 * @param The vector to add to this vector
+	 * @return The vector sum
+	 */
 	
 	public Vector2D subtract(Vector2D other) {
 		return new Vector2D(this.x - other.getX(), this.y - other.getY());
 	}
+	/**
+	 * Scalar Multiplies one vector by another
+	 * @param The scalar to multiply by
+	 * @return The scalar product
+	 */
 	
 	public Vector2D scalarMultiply(float scalar) {
 		return new Vector2D(this.x * scalar, this.y * scalar);
 	}
 	
 	//vector operations
-	
+	/**
+	 * Performs an inner product between two vectors
+	 * @param one
+	 * @param two
+	 * @return The inner product
+	 */
 	public static float innerProduct(Vector2D one, Vector2D two) {
 		return one.getX() * two.getX() + one.getY()*two.getY();
 	}
-	
+	/**
+	 * Performs the cross product between vector 1 and 2
+	 * @param one
+	 * @param two
+	 * @return The cross product
+	 */
 	public static float crossProduct(Vector2D one, Vector2D two) {
 		return one.getX()*two.getY() - one.getY()*two.getX();
 	}
