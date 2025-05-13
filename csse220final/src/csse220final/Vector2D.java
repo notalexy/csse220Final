@@ -44,6 +44,10 @@ public class Vector2D {
 	//other properties
 	
 	public Vector2D unit() {
+		//avoid divide by zero
+		if (this.x == 0 && this.y == 0) {
+			return new Vector2D(0, 0);
+		}
 		return new Vector2D((float)(this.x / Math.sqrt(this.x*this.x + this.y*this.y)), (float)(this.y / Math.sqrt(this.x*this.x + this.y*this.y)));
 	}
 	
@@ -51,5 +55,8 @@ public class Vector2D {
 		return (float)Math.sqrt((this.x*this.x + this.y*this.y));
 	}
 	
+	public String toString() {
+		return ("X: " + this.x + " Y: " + this.y);
+	}
 	
 }

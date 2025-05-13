@@ -19,5 +19,14 @@ public abstract class LivingEntity extends CollisionInitiator {
 		if(this.health < 0) this.onDeath();
 	}
 	
+	@Override
+	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
+		Vector2D veloVector = new Vector2D(this.xvel, this.yvel);
+		Vector2D modifiedVelo = veloVector.subtract(Vector2D.project(veloVector, collisionDirection));
+		this.xvel = modifiedVelo.getX();
+		this.yvel = modifiedVelo.getY();
+		System.out.println(collisionDirection);
+	}
+	
 
 }

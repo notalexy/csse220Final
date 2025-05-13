@@ -17,12 +17,12 @@ public abstract class Collidable extends Entity {
 	//bullets
 	
 	
-	public abstract void respondToCollision(Collidable other);
+	public abstract void respondToCollision(Collidable other, Vector2D collisionDirection);
 
 	
 	/*
 	 * Collision vector process:
-	 * Generate a vector from the responder depneindg on the responder's bounding box
+	 * Generate a vector from the responder depending on the responder's bounding box
 	 * See if this vector intercepts the initator. 
 	 * if so, call respond to collision on both objects
 	 */

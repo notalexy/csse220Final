@@ -47,20 +47,23 @@ public class Wall extends Collidable {
 	}
 
 	@Override
-	public void respondToCollision(Collidable other) {
-		// TODO Auto-generated method stub
-		
+	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
+		//doNothing
 	}
 
 	@Override
 	public List<Vector2D> generateCollisionVector(Vector2D point) {
 		List<Vector2D> outputs = new ArrayList<Vector2D>();
 		
-		Vector2D centersVector = new Vector2D(this.x, this.y).subtract(point);
+		
+		//find vector from wall center to initiator center
+		Vector2D centersVector = point.subtract(new Vector2D(this.x, this.y));
+		
+		//object is (possibly) touching a flat face
 		if (Math.abs(centersVector.getX()) < this.width) {
 			outputs.add(new Vector2D(
 					point.getX(),
-					Math.signum(centersVector.getY())*this.height
+					this.y + Math.signum(centersVector.getY())*this.height/2
 					));
 			outputs.add(new Vector2D(
 					0,
@@ -69,16 +72,22 @@ public class Wall extends Collidable {
 		}
 		else if (Math.abs(centersVector.getY()) < this.height) {
 			outputs.add(new Vector2D(
-					Math.signum(centersVector.getX())*this.width,
+					this.x + Math.signum(centersVector.getX())*this.width/2,
 					point.getY()
 					));
 			outputs.add(new Vector2D(
-					0,
-					Math.signum(centersVector.getX())
+					Math.signum(centersVector.getX()),
+					0					
 					));
 		}
-		
-		return null;
+		else {
+		//object is (possibly) touching a corner
+		outputs.add(new Vector2D(
+				Math.signum(centersVector.getX())*this.width/2,
+				Math.signum(centersVector.getY())*this.height/2
+				));
+		}
+		return outputs;
 	}
 	
 

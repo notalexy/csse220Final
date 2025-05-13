@@ -11,15 +11,15 @@ public class Player extends LivingEntity{
 	public Player(float x, float y, int r) {
 		super(x, y, r);
 		this.movable = true;
-		this.width = r;
-		this.height = r;
+		this.width = r*2;
+		this.height = r*2;
 		
 		
 		
 		//initialize to zero
 		this.theta = 0;
 		this.thetavel = 0;
-		this.xvel = 0;
+		this.xvel = -60;
 		this.yvel = 0;
 		
 		this.sprite = SpriteLoader.getInstance().getSprite(Player.FILEPATH);
@@ -34,9 +34,9 @@ public class Player extends LivingEntity{
 	public void update(float dt) {
 		super.update(dt);
 		//randomly imcrements velocities for testing
-		this.xvel += 5.0f * (1.0f - 2.0f*Math.random());
-		this.yvel += 5.0f * (1.0f - 2.0f*Math.random());
-		this.thetavel += 0.5f * (1.0f - 2.0f*Math.random());
+		//this.xvel += 5.0f * (1.0f - 2.0f*Math.random());
+		//this.yvel += 5.0f * (1.0f - 2.0f*Math.random());
+		//this.thetavel += 0.5f * (1.0f - 2.0f*Math.random());
 		
 		
 	}
