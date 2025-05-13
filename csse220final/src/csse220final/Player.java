@@ -8,12 +8,11 @@ public class Player extends LivingEntity{
 	private boolean spriteLoaded;
 	private static final String FILEPATH = "src/playerbig.png";
 	
-	public Player(float x, float y, int width, int height) {
+	public Player(float x, float y, int r) {
+		super(x, y, r);
 		this.movable = true;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		this.width = r;
+		this.height = r;
 		
 		
 		
@@ -27,8 +26,8 @@ public class Player extends LivingEntity{
 		this.spriteLoaded = !(this.sprite == null);
 	}
 	
-	public Player(int x, int y, int width, int height) {
-		this((float)x, (float)y, width, height);
+	public Player(int x, int y, int radius) {
+		this((float)x, (float)y, radius);
 	}
 	
 	@Override 
@@ -48,9 +47,5 @@ public class Player extends LivingEntity{
 		 if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
 	}
 	
-	@Override
-	public void handleCollision() {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

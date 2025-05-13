@@ -49,7 +49,7 @@ public class EntityManager {
 		}
 		
 		//spawns the player
-		entities.add(new Player(300, 300, 50, 50));
+		entities.add(new Player(300, 300, 50));
 		
 	}
 	
