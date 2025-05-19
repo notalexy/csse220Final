@@ -1,6 +1,6 @@
 package csse220final;
 
-public abstract class LivingEntity extends CollisionInitiator {
+public abstract class LivingEntity extends CollisionInitiator implements Damagable{
 
 	private int health;
 	private int maxhealth;
@@ -29,5 +29,8 @@ public abstract class LivingEntity extends CollisionInitiator {
 		}
 	}
 	
+	public void onDamage(int damage) {
+		this.health -= damage;
+	}
 
 }

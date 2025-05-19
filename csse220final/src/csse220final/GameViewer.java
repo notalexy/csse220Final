@@ -16,6 +16,7 @@ public class GameViewer {
 	public static final Dimension WINDOW_SIZE = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	public static void main(String[] args) {
+		//set up frame
 		JFrame frame = new JFrame();
 
 		frame.setUndecorated(true);
@@ -33,18 +34,42 @@ public class GameViewer {
 		
 		frame.setVisible(true);
 		
-		//debug shortcut to rapidly close windows that eclipse opens up
+		//pass the keyevents to the manager
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 		    public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
-		        	case KeyEvent.VK_PAGE_DOWN: frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-		        	}
+		        	case KeyEvent.VK_PAGE_DOWN:
+		        		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));}
+				
+					//immediately feed it to the manager
+					GameManager.getInstance().keyPressed(e);
 				}
-		   	});
+			
+			public void keyReleased(KeyEvent e) {
+				GameManager.getInstance().keyReleased(e);
+			}
+		});
 		
+		frame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				switch(e.getButton()) {
+				case MouseEvent.BUTTON1:
+					GameManager.getInstance().mousePressed(e);
+				}
+				System.out.println("click");
+			}
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				System.out.println("e");
+			}
+		});
 		
-		//System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-		//System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+
+
+
+		
 	}
 }

@@ -30,4 +30,6 @@ public class GamePanel extends JComponent{
 		java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
 		this.manager.draw(g2d);
 	}
+	
+	
 }

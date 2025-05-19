@@ -7,9 +7,13 @@ public class EntityManager {
 	
 	private static EntityManager entityManager; //singleton
 	
+	//there are multiple entity lists to improve performance for collision checking
 	private java.util.List<Entity> entities;
 	private java.util.List<CollisionInitiator> initators;
 	private java.util.List<Collidable> collidables;
+	
+	private java.util.List<Entity> toRemove;
+	private Player player; //store the player separately to ensure it gets called seprately
 	
 	private final int borderWallSize = 50;
 	/**
@@ -55,7 +59,7 @@ public class EntityManager {
 		}
 		
 		//spawns the player
-		addInitiator(new Player(290, 300, 25));
+		addPlayer(new Player(290, 300, 25));
 		
 	}
 	
@@ -95,6 +99,12 @@ public class EntityManager {
 		}
 	}
 	
+	public Player getPlayer() {
+		return this.player;
+	}
+	
+	//adding and removing entities
+	
 	public void addCollidable(Collidable c) {
 		this.entities.add(c);
 		this.collidables.add(c);
@@ -103,5 +113,22 @@ public class EntityManager {
 	public void addInitiator(CollisionInitiator c) {
 		this.initators.add(c);
 		addCollidable(c);
+	}
+	
+	public void addPlayer(Player p) {
+		this.player = p;
+		this.addInitiator(p);
+	}
+	
+	public void scheduleDestroy(Entity e) {
+		this.toRemove.add(e);
+	}
+	
+	public void removeEntities() {
+		for(Entity e: toRemove) {
+			this.entities.remove(e);
+			this.collidables.remove(e);
+			this.initators.remove(e);
+		}
 	}
 }
