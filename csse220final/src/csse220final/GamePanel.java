@@ -1,6 +1,12 @@
 package csse220final;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;
 /**
  * 
@@ -9,18 +15,56 @@ import javax.swing.*;
 public class GamePanel extends JComponent{
 	private int fps = 60;
 	private GameManager manager;
+	private JFrame parentFrame;
 	
-	public GamePanel() {
+	public GamePanel(JFrame parentFrame) {
 		//create the one and only game manager
 		this.manager = GameManager.getInstance();
 		
-		//start animation timer
+		this.parentFrame = parentFrame;
+		
+		//send things to game manager
+		parentFrame.addKeyListener(new KeyAdapter() {
+			@Override
+		    public void keyPressed(KeyEvent e) {
+					//immediately feed it to the manager
+					manager.keyPressed(e);
+				}
+				
+			
+			public void keyReleased(KeyEvent e) {
+				manager.keyReleased(e);
+			}
+		});
+		
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				switch(e.getButton()) {
+				case MouseEvent.BUTTON1:
+					GameManager.getInstance().mousePressed(e);
+				}
+			}
+			
+		});
+		
+		//start animati0on timer
 		Timer animationTimer = new Timer(1/fps, e -> update());
 		animationTimer.start();
+		
 	}
 	
 	private void update() {
-		manager.update(1.0f/fps);
+		int xpos = 0;
+		int ypos = 0;
+		try {
+		xpos = (int)this.getMousePosition().getX();
+		ypos = (int)this.getMousePosition().getY();
+		}	catch (NullPointerException e) { //catch if mouse is off screen
+			
+		}
+		
+		manager.update(1.0f/fps, xpos, ypos);
 		repaint();
 	}
 	
@@ -30,6 +74,4 @@ public class GamePanel extends JComponent{
 		java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
 		this.manager.draw(g2d);
 	}
-	
-	
 }

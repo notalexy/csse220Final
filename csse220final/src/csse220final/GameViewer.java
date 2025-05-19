@@ -29,12 +29,12 @@ public class GameViewer {
 				,0); //centers the screen horiztonally if the screen width is unexpected, does not re-scale screen due to things depending on pixels
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
-		GamePanel gamePanel = new GamePanel();
+		GamePanel gamePanel = new GamePanel(frame);
 		frame.add(gamePanel);
 		
 		frame.setVisible(true);
 		
-		//pass the keyevents to the manager
+		//close window shortcut
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 		    public void keyPressed(KeyEvent e) {
@@ -42,30 +42,10 @@ public class GameViewer {
 		        	case KeyEvent.VK_PAGE_DOWN:
 		        		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));}
 				
-					//immediately feed it to the manager
-					GameManager.getInstance().keyPressed(e);
-				}
-			
-			public void keyReleased(KeyEvent e) {
-				GameManager.getInstance().keyReleased(e);
 			}
 		});
 		
-		frame.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				switch(e.getButton()) {
-				case MouseEvent.BUTTON1:
-					GameManager.getInstance().mousePressed(e);
-				}
-				System.out.println("click");
-			}
-			
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				System.out.println("e");
-			}
-		});
+
 		
 
 

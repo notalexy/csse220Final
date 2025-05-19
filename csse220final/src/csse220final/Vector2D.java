@@ -87,4 +87,8 @@ public class Vector2D {
 		return ("X: " + this.x + " Y: " + this.y);
 	}
 	
+	public float angle() {
+		return (float)Math.atan2((double)this.y, (double)this.x);
+	}
+	
 }

@@ -80,6 +80,16 @@ public class Player extends LivingEntity{
 		this.yvel += yveldiff;
 		
 	}
+	
+	public void requestPointTo(Vector2D target) {
+		Vector2D currentPos = new Vector2D(this.x, this.y);
+		float direction = target.subtract(currentPos).angle() + (float)Math.PI/2;
+		this.theta = direction;
+		
+		
+		
+		
+	}
 
 
 	@Override

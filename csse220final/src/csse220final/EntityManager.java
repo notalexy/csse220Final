@@ -40,7 +40,7 @@ public class EntityManager {
 		//construct walls around the border
 		int horizontalWalls = GameViewer.SCREEN_WIDTH / borderWallSize;
 		int verticalWalls = GameViewer.SCREEN_HEIGHT / borderWallSize;
-		System.out.println(horizontalWalls);
+		
 		for(int i = 0; i < horizontalWalls; i++) {
 			addCollidable(new Wall(i*borderWallSize + (GameViewer.SCREEN_WIDTH - horizontalWalls*borderWallSize)/2 + borderWallSize/2, 
 					 (GameViewer.SCREEN_HEIGHT- verticalWalls*borderWallSize)/2 + borderWallSize/2,

@@ -46,8 +46,8 @@ public class GameManager{
 	 * 
 	 * @param dt: Time since last update
 	 */
-	public void update(float dt) {
-		requestStuffToPlayer();
+	public void update(float dt, int xpos, int ypos) {
+		requestStuffToPlayer(xpos, ypos);
 		this.entityManager.updateAllEntities(dt);
 	}
 	
@@ -61,12 +61,13 @@ public class GameManager{
 
 	//mouse stuff
 	
-	public void requestStuffToPlayer() {
+	public void requestStuffToPlayer(int xpos, int ypos) {
 		int yvel = (s ? 1 : 0) - (w ? 1 : 0);
 		int xvel = (d ? 1 : 0) - (a ? 1 : 0);
 		
 		Vector2D requestedVelo = new Vector2D(xvel, yvel).unit().scalarMultiply(999);
 		entityManager.getPlayer().requestVelocity(requestedVelo);
+		entityManager.getPlayer().requestPointTo(new Vector2D(xpos, ypos));
 		//System.out.println(requestedVelo);
 	}
 	
