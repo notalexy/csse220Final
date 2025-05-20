@@ -14,9 +14,11 @@ public class PlayerSword extends Sword {
 		this.yOffset = this.height / 2.0f + owner.getRadius();
 		
 		//attacking properties
-		this.arc = (float) (2*Math.PI/4);
+		this.arc = (float) (Math.PI/2);
 		this.swingSpeed = 5;
 		this.cooldownAfterHit = 0.2f;
+		
+		this.thetaOffset = -this.arc / 2;
 		
 		this.team = Damagable.PLAYER_TEAM;
 		

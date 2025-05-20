@@ -104,9 +104,9 @@ public class Sword extends Collidable implements Weapon {
 
 		if (this.swinging) {
 			this.thetaOffset += dt * this.swingSpeed;
-			if (thetaOffset > arc) {
+			if (thetaOffset > arc + arc/2) {
 				this.swinging = false;
-				thetaOffset = 0;
+				thetaOffset = -arc / 2;
 			}
 		}
 		this.cooldown -= dt;

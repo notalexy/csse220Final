@@ -88,18 +88,23 @@ public class GameManager{
 		Vector2D requestedVelo = new Vector2D(xvel, yvel).unit().scalarMultiply(999);
 		EntityManager.getInstance().getPlayer().requestVelocity(requestedVelo);
 		EntityManager.getInstance().getPlayer().requestPointTo(new Vector2D(xpos, ypos));
+		if (this.left) {
+			EntityManager.getInstance().getPlayer().attack();
+		}
 		//System.out.println(requestedVelo);
 	}
 	
 
 
 	public void mousePressed(MouseEvent e) {
-	
+		//TODO: FIX
+		//this.left = true;
 	}
 
 
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		this.left = false;
+		//System.out.println("release");
 		
 	}
 

@@ -24,6 +24,7 @@ public class EntityManager {
 	public static EntityManager getInstance() {
 		if (EntityManager.entityManager == null) {
 			EntityManager.entityManager = new EntityManager();
+			EntityManager.entityManager.startupFuction();
 		}
 		return EntityManager.entityManager;
 	}
@@ -32,13 +33,16 @@ public class EntityManager {
 	 * Singleton private constructor class
 	 */
 	private EntityManager() {
-		
 		//Create a list of all entities
 		this.entities = new ArrayList<Entity>();
 		this.collidables = new ArrayList<Collidable>();
 		this.initators = new ArrayList<CollisionInitiator>();
 		this.enemies = new ArrayList<Enemy>();
-		
+				
+	}
+	
+	//created after constructing
+	private void startupFuction() {
 		//construct walls around the border
 		int horizontalWalls = GameViewer.SCREEN_WIDTH / borderWallSize;
 		int verticalWalls = GameViewer.SCREEN_HEIGHT / borderWallSize;
@@ -62,8 +66,6 @@ public class EntityManager {
 		
 		//spawns the player
 		addPlayer(new Player(GameViewer.SCREEN_WIDTH/ 2, GameViewer.SCREEN_HEIGHT/ 2, 25));
-
-		
 	}
 	
 	

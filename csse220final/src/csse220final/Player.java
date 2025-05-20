@@ -17,6 +17,7 @@ public class Player extends LivingEntity{
 	
 	public Player(float x, float y, int r) {
 		super(x, y, r);
+		
 		this.width = r*2;
 		this.height = r*2;
 		
@@ -41,7 +42,7 @@ public class Player extends LivingEntity{
 		this.spriteLoaded = !(this.sprite == null);
 		
 		//add a player sword for testing
-		//this.addWeapon(new PlayerSword(this, 25));
+		this.addWeapon(new PlayerSword(this, 25));
 		
 	}
 	
