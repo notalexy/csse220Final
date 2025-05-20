@@ -38,6 +38,7 @@ public class EntityManager {
 		this.collidables = new ArrayList<Collidable>();
 		this.initators = new ArrayList<CollisionInitiator>();
 		this.enemies = new ArrayList<Enemy>();
+		this.toRemove = new ArrayList<Entity>();
 				
 	}
 	

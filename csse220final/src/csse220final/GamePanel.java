@@ -44,6 +44,12 @@ public class GamePanel extends JComponent{
 				}
 			}
 			
+			public void mouseReleased(MouseEvent e) {
+				switch(e.getButton()) {
+				case MouseEvent.BUTTON1:
+					GameManager.getInstance().mouseReleased(e);
+				}
+			}
 		});
 		
 		//start animati0on timer

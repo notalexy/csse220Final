@@ -97,14 +97,12 @@ public class GameManager{
 
 
 	public void mousePressed(MouseEvent e) {
-		//TODO: FIX
-		//this.left = true;
+		this.left = true;
 	}
 
 
 	public void mouseReleased(MouseEvent e) {
 		this.left = false;
-		//System.out.println("release");
 		
 	}
 

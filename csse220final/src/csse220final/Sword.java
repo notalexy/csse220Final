@@ -68,9 +68,8 @@ public class Sword extends Collidable implements Weapon {
 		}
 
 		List<Vector2D> outputs = new ArrayList<Vector2D>();
-		outputs.add(new Vector2D(0, 1).scalarMultiply(ownerVector.magnitude()).rotate(thetaOffset).add(ownerPos));
-		outputs.add(new Vector2D(0, 0));
-
+		outputs.add(new Vector2D(0, 1).scalarMultiply(ownerVector.magnitude()).rotate(thetaOffset + owner.getTheta() + (float)Math.PI/2).add(ownerPos));
+		outputs.add(new Vector2D(0, 1).rotate(thetaOffset + owner.getTheta() + (float)Math.PI/2));
 		return outputs;
 	}
 
@@ -104,7 +103,7 @@ public class Sword extends Collidable implements Weapon {
 
 		if (this.swinging) {
 			this.thetaOffset += dt * this.swingSpeed;
-			if (thetaOffset > arc + arc/2) {
+			if (thetaOffset > arc/2) {
 				this.swinging = false;
 				thetaOffset = -arc / 2;
 			}
