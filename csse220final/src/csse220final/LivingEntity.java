@@ -41,7 +41,6 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	}
 
 	public void onDamage(int damage, int team) {
-		//System.out.println(team);
 		if (this.team != team) { //prevent firendly fire
 		this.health -= damage;
 		}
@@ -55,6 +54,13 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	public void attack() {
 		for (Weapon w : weapons) {
 			w.attack();
+		}
+	}
+	
+	public void onDeath() {
+		super.onDeath();
+		for (Weapon w: weapons) {
+			EntityManager.getInstance().scheduleDestroy((Entity) w);
 		}
 	}
 }

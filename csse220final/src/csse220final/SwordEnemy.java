@@ -26,7 +26,6 @@ public class SwordEnemy extends Enemy {
 	public void update(float dt) {
 		this.dtlast = dt;
 				
-		//System.out.println(this.health);
 		
 		
 		

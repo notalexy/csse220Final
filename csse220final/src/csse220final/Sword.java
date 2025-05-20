@@ -68,8 +68,8 @@ public class Sword extends Collidable implements Weapon {
 		}
 
 		List<Vector2D> outputs = new ArrayList<Vector2D>();
-		outputs.add(new Vector2D(0, 1).scalarMultiply(ownerVector.magnitude()).rotate(thetaOffset + owner.getTheta() + (float)Math.PI/2).add(ownerPos));
-		outputs.add(new Vector2D(0, 1).rotate(thetaOffset + owner.getTheta() + (float)Math.PI/2));
+		outputs.add(new Vector2D(0, 1).scalarMultiply(ownerVector.magnitude()).rotate(thetaOffset + owner.getTheta() + (float)Math.PI).add(ownerPos));
+		outputs.add(new Vector2D(0, 1).rotate(thetaOffset + owner.getTheta() + (float)Math.PI));
 		return outputs;
 	}
 

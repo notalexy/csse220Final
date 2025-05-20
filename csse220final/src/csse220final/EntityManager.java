@@ -82,6 +82,7 @@ public class EntityManager {
 	 * @param dt Time since last update
 	 */
 	public void updateAllEntities(float dt) {
+		removeEntities();
 		for(CollisionInitiator i : initators) {
 			for(Collidable c : collidables) {
 				if (c != i) { //prevent self-collsion
