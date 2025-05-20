@@ -78,6 +78,7 @@ public class Wall extends Collidable {
 					0					
 					));
 		}
+		
 		else {
 			
 		//object is (possibly) touching a corner

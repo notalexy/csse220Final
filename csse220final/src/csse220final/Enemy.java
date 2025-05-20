@@ -1,9 +1,11 @@
 package csse220final;
 
 public abstract class Enemy extends LivingEntity{
-	protected static final String FILEPATH = "src/Enemy";
+	protected static final String FILEPATH = "src/Enemy.png";
 	protected int maxSpeed;
 	protected float xvelreq, yvelreq;
+	protected float accel;
+	protected EnemyBehavior behavior;
 	
 	public Enemy(float x, float y, int r, float scaling) {
 		super(x, y, r);
@@ -25,5 +27,40 @@ public abstract class Enemy extends LivingEntity{
 		
 		this.sprite = SpriteLoader.getInstance().getSprite(Enemy.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);
+		this.behavior = null;
+	}
+	
+
+	protected float dtlast;
+
+	public void requestVelocity(Vector2D reqVector) {
+		Vector2D newReqVelo = reqVector;
+		if (reqVector.Magnitude() > this.maxSpeed) {
+			newReqVelo = reqVector.unit().scalarMultiply(maxSpeed);
+		}
+		this.xvelreq = newReqVelo.getX();
+		this.yvelreq = newReqVelo.getY();
+
+		float xveldiff = this.xvelreq - this.xvel;
+		float yveldiff = this.yvelreq - this.yvel;
+
+		xveldiff = Math.max(-this.accel * dtlast, Math.min(xveldiff, this.accel * dtlast));
+		yveldiff = Math.max(-this.accel * dtlast, Math.min(yveldiff, this.accel * dtlast));
+
+		this.xvel += xveldiff;
+		this.yvel += yveldiff;
+
+	}
+
+	public void requestPointTo(Vector2D target) {
+		Vector2D currentPos = new Vector2D(this.x, this.y);
+		float direction = target.subtract(currentPos).angle() + (float) Math.PI / 2;
+		this.theta = direction;
+
+	}
+	@Override 
+	public void update(float dt){
+		this.behavior.update(dt);
+		super.update(dt);
 	}
 }

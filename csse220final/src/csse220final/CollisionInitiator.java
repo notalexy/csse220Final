@@ -27,10 +27,11 @@ public abstract class CollisionInitiator extends Collidable {
 
 	@Override
 	public List<Vector2D> generateCollisionVector(Vector2D point) {
+		Vector2D centersVector = point.subtract(new Vector2D(this.x, this.y));
 		//return a vector pointing in the direction between the direction of the initiator point with a radius of r
 		List<Vector2D> outputs = new ArrayList<Vector2D>();
-		outputs.add(new Vector2D(this.x, this.y).subtract(point).unit());
-		outputs.add(new Vector2D(this.x, this.y).subtract(point).unit().scalarMultiply(radius));
+		outputs.add(centersVector.unit().scalarMultiply((float) radius).add(new Vector2D(this.x, this.y)));
+		outputs.add(centersVector.unit());
 		return outputs;
 	}
 

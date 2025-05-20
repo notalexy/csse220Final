@@ -30,6 +30,7 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 			this.xvel = modifiedVelo.getX();
 			this.yvel = modifiedVelo.getY();
 		}
+		System.out.println("bonk!");
 	}
 	
 	public void onDamage(int damage) {

@@ -10,7 +10,10 @@ import java.awt.event.*;
 public class GameManager{
 	private static GameManager gameManager; //singleton
 	private EntityManager entityManager;
+	private EnemySpawner spawner;
 	private boolean w, a, s, d, left;
+	private int wave;
+	private float currentTime = 0;
 	
 	 /**
 	 * Singleton get instance command, should always be called when interacting with the game manager
@@ -30,7 +33,10 @@ public class GameManager{
 		//destroys the entity manager if it exits
 		EntityManager.destroy();
 		//makes a new entityManager
+		
 		this.entityManager = EntityManager.getInstance();
+		this.spawner = new EnemySpawner();
+		
 	}
 	
 	
@@ -47,7 +53,10 @@ public class GameManager{
 	 * @param dt: Time since last update
 	 */
 	public void update(float dt, int xpos, int ypos) {
+		this.currentTime += dt;
 		requestStuffToPlayer(xpos, ypos);
+		this.spawner.update(currentTime);
+		
 		this.entityManager.updateAllEntities(dt);
 	}
 	
@@ -59,7 +68,18 @@ public class GameManager{
 		this.entityManager.drawAllEntities(g2d);
 	}
 
-	//mouse stuff
+	
+	//gameplay logic
+	
+	public void incrementWave() {
+		this.wave++;
+	}
+	
+	public int getWave() {
+		return this.wave;
+	}
+	
+	//mouse stuff: CONSIDER SPLITTING CLASS
 	
 	public void requestStuffToPlayer(int xpos, int ypos) {
 		int yvel = (s ? 1 : 0) - (w ? 1 : 0);
@@ -104,4 +124,5 @@ public class GameManager{
       }	
 	}
 
+	
 }

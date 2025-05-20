@@ -11,6 +11,7 @@ public class EntityManager {
 	private java.util.List<Entity> entities;
 	private java.util.List<CollisionInitiator> initators;
 	private java.util.List<Collidable> collidables;
+	private java.util.List<Enemy> enemies;
 	
 	private java.util.List<Entity> toRemove;
 	private Player player; //store the player separately to ensure it gets called seprately
@@ -36,6 +37,7 @@ public class EntityManager {
 		this.entities = new ArrayList<Entity>();
 		this.collidables = new ArrayList<Collidable>();
 		this.initators = new ArrayList<CollisionInitiator>();
+		this.enemies = new ArrayList<Enemy>();
 		
 		//construct walls around the border
 		int horizontalWalls = GameViewer.SCREEN_WIDTH / borderWallSize;
@@ -59,7 +61,8 @@ public class EntityManager {
 		}
 		
 		//spawns the player
-		addPlayer(new Player(290, 300, 25));
+		addPlayer(new Player(GameViewer.SCREEN_WIDTH/ 2, GameViewer.SCREEN_HEIGHT/ 2, 25));
+
 		
 	}
 	
@@ -86,6 +89,7 @@ public class EntityManager {
 		for(Entity e:entities) {
 			e.update(dt);
 		}
+		
 	}
 	
 	/**
@@ -118,6 +122,16 @@ public class EntityManager {
 	public void addPlayer(Player p) {
 		this.player = p;
 		this.addInitiator(p);
+	}
+	
+	
+	public void addEnemy(Enemy e) {
+		this.enemies.add(e);
+		this.addInitiator(e);
+	}
+	
+	public int getNumberOfEnemies() {
+		return enemies.size();
 	}
 	
 	public void scheduleDestroy(Entity e) {

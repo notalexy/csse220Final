@@ -59,4 +59,7 @@ public abstract class Entity implements ImageObserver {
 		//required to draw images
 		return false;
 	}
+	
+	public float getX() {return this.x;};
+	public float getY() {return this.y;};
 }
