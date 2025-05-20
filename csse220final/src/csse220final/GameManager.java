@@ -9,7 +9,6 @@ import java.awt.event.*;
  */
 public class GameManager{
 	private static GameManager gameManager; //singleton
-	private EntityManager entityManager;
 	private EnemySpawner spawner;
 	private boolean w, a, s, d, left;
 	private int wave;
@@ -34,7 +33,6 @@ public class GameManager{
 		EntityManager.destroy();
 		//makes a new entityManager
 		
-		this.entityManager = EntityManager.getInstance();
 		this.spawner = new EnemySpawner();
 		
 	}
@@ -44,7 +42,9 @@ public class GameManager{
 	 * Used for deleting the GameManager state such that a new one can be created
 	 */
 	public static void destroy() {
+		EntityManager.destroy();
 		GameManager.gameManager = null;
+		System.out.println("yeet");
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class GameManager{
 		requestStuffToPlayer(xpos, ypos);
 		this.spawner.update(currentTime);
 		
-		this.entityManager.updateAllEntities(dt);
+		EntityManager.getInstance().updateAllEntities(dt);
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class GameManager{
 	 * @param g2d
 	 */
 	public void draw(java.awt.Graphics2D g2d) {
-		this.entityManager.drawAllEntities(g2d);
+		EntityManager.getInstance().drawAllEntities(g2d);
 	}
 
 	
@@ -86,8 +86,8 @@ public class GameManager{
 		int xvel = (d ? 1 : 0) - (a ? 1 : 0);
 		
 		Vector2D requestedVelo = new Vector2D(xvel, yvel).unit().scalarMultiply(999);
-		entityManager.getPlayer().requestVelocity(requestedVelo);
-		entityManager.getPlayer().requestPointTo(new Vector2D(xpos, ypos));
+		EntityManager.getInstance().getPlayer().requestVelocity(requestedVelo);
+		EntityManager.getInstance().getPlayer().requestPointTo(new Vector2D(xpos, ypos));
 		//System.out.println(requestedVelo);
 	}
 	

@@ -14,12 +14,10 @@ import javax.swing.*;
  */
 public class GamePanel extends JComponent{
 	private int fps = 60;
-	private GameManager manager;
 	private JFrame parentFrame;
 	
 	public GamePanel(JFrame parentFrame) {
 		//create the one and only game manager
-		this.manager = GameManager.getInstance();
 		
 		this.parentFrame = parentFrame;
 		
@@ -28,12 +26,12 @@ public class GamePanel extends JComponent{
 			@Override
 		    public void keyPressed(KeyEvent e) {
 					//immediately feed it to the manager
-					manager.keyPressed(e);
+					GameManager.getInstance().keyPressed(e);
 				}
 				
 			
 			public void keyReleased(KeyEvent e) {
-				manager.keyReleased(e);
+				GameManager.getInstance().keyReleased(e);
 			}
 		});
 		
@@ -64,7 +62,7 @@ public class GamePanel extends JComponent{
 			
 		}
 		
-		manager.update(1.0f/fps, xpos, ypos);
+		GameManager.getInstance().update(1.0f/fps, xpos, ypos);
 		repaint();
 	}
 	
@@ -72,6 +70,6 @@ public class GamePanel extends JComponent{
 	protected void paintComponent(java.awt.Graphics g) {
 		super.paintComponent(g);
 		java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
-		this.manager.draw(g2d);
+		GameManager.getInstance().draw(g2d);
 	}
 }

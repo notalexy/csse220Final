@@ -17,10 +17,11 @@ public class Player extends LivingEntity{
 	
 	public Player(float x, float y, int r) {
 		super(x, y, r);
-		this.movable = true;
 		this.width = r*2;
 		this.height = r*2;
 		
+		//prevent friendly fire
+		this.team = Damagable.PLAYER_TEAM;
 		
 		
 		//initialize to zero
@@ -38,6 +39,10 @@ public class Player extends LivingEntity{
 		
 		this.sprite = SpriteLoader.getInstance().getSprite(Player.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);
+		
+		//add a player sword for testing
+		//this.addWeapon(new PlayerSword(this, 25));
+		
 	}
 	
 	public Player(int x, int y, int radius) {
@@ -56,8 +61,7 @@ public class Player extends LivingEntity{
 		
 		
 		super.update(dt);
-		//randomly increments velocities for testing
-
+		
 		
 		
 	}
@@ -99,4 +103,8 @@ public class Player extends LivingEntity{
 		 if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
 	}
 
+	@Override
+	public void onDeath() {
+		GameManager.destroy();
+	}
 }

@@ -9,7 +9,6 @@ public abstract class Enemy extends LivingEntity{
 	
 	public Enemy(float x, float y, int r, float scaling) {
 		super(x, y, r);
-		this.movable = true;
 		this.width = r*2;
 		this.height = r*2;
 		
@@ -27,6 +26,8 @@ public abstract class Enemy extends LivingEntity{
 		this.sprite = SpriteLoader.getInstance().getSprite(Enemy.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);
 		this.behavior = null;
+		
+		this.team = Damagable.ENEMY_TEAM;
 	}
 	
 

@@ -62,6 +62,7 @@ public class EntityManager {
 		
 		//spawns the player
 		addPlayer(new Player(GameViewer.SCREEN_WIDTH/ 2, GameViewer.SCREEN_HEIGHT/ 2, 25));
+
 		
 	}
 	

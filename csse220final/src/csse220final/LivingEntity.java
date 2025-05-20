@@ -7,6 +7,7 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	protected int health;
 	protected int maxhealth;
 	protected List<Weapon> weapons;
+	protected int team;
 
 	public LivingEntity(float x, float y, int radius) {
 		super(radius);
@@ -39,8 +40,10 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 		}
 	}
 
-	public void onDamage(int damage) {
+	public void onDamage(int damage, int team) {
+		if (this.team != team) { //prevent firendly fire
 		this.health -= damage;
+		}
 	}
 
 	public void addWeapon(Weapon w) {

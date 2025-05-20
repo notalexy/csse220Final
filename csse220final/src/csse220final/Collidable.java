@@ -4,7 +4,6 @@ import java.util.*;
 
 //TODO: Implement
 public abstract class Collidable extends Entity {
-	protected boolean movable;
 	protected boolean solid; //Non-solid objects do not push other objects, but still have collision detections
 	
 	//collisions is ASYMMETRIC. There are collision initiators and collision responders. 

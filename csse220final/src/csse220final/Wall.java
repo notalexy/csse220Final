@@ -10,7 +10,7 @@ public class Wall extends Collidable {
 	private static final String FILEPATH = "src/WallSprite.png";
 	
 	public Wall(float x, float y, int width, int height) {
-		this.movable = false;
+		this.solid = true;
 		this.x = x;
 		this.y = y;
 		this.width = width;
