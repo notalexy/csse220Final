@@ -15,7 +15,7 @@ public class Vector2D {
 	public float getX() { return this.x;}
 	public float getY() { return this.y;}
 	
-	//arithmatic operations
+	//Arithmetic operations
 	/**
 	 * Adds one vector to another
 	 * @param The vector to add to this vector
@@ -69,6 +69,16 @@ public class Vector2D {
 		return two.unit().scalarMultiply(Vector2D.innerProduct(one, two.unit()));
 	}
 	
+	/**
+	 * Rotate a vector about the z axis by theta
+	 * @param theta
+	 * @return
+	 */
+	public Vector2D rotate(float theta) {
+		return new Vector2D((float)(this.x * Math.cos(theta) - this.y * Math.sin(theta)),(float)(this.x * Math.sin(theta) + this.y * Math.cos(theta)));
+	}
+	
+	
 	//other properties
 	
 	public Vector2D unit() {
@@ -79,7 +89,7 @@ public class Vector2D {
 		return new Vector2D((float)(this.x / Math.sqrt(this.x*this.x + this.y*this.y)), (float)(this.y / Math.sqrt(this.x*this.x + this.y*this.y)));
 	}
 	
-	public float Magnitude() {
+	public float magnitude() {
 		return (float)Math.sqrt((this.x*this.x + this.y*this.y));
 	}
 	
@@ -90,5 +100,6 @@ public class Vector2D {
 	public float angle() {
 		return (float)Math.atan2((double)this.y, (double)this.x);
 	}
+	
 	
 }

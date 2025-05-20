@@ -64,7 +64,7 @@ public class Player extends LivingEntity{
 	
 	public void requestVelocity(Vector2D reqVector) {
 			Vector2D newReqVelo = reqVector;
-		if (reqVector.Magnitude() > this.maxSpeed) {
+		if (reqVector.magnitude() > this.maxSpeed) {
 			newReqVelo = reqVector.unit().scalarMultiply(maxSpeed);
 		}
 		this.xvelreq = newReqVelo.getX();

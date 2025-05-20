@@ -62,7 +62,6 @@ public class EntityManager {
 		
 		//spawns the player
 		addPlayer(new Player(GameViewer.SCREEN_WIDTH/ 2, GameViewer.SCREEN_HEIGHT/ 2, 25));
-
 		
 	}
 	
@@ -109,8 +108,12 @@ public class EntityManager {
 	
 	//adding and removing entities
 	
+	public void addEntity(Entity e) {
+		this.entities.add(e);
+	}
+	
 	public void addCollidable(Collidable c) {
-		this.entities.add(c);
+		this.addEntity(c);
 		this.collidables.add(c);
 	}
 	

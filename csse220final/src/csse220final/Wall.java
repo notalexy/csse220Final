@@ -58,7 +58,7 @@ public class Wall extends Collidable {
 		Vector2D centersVector = point.subtract(new Vector2D(this.x, this.y));
 		
 		//object is (possibly) touching a flat face
-		if (Math.abs(centersVector.getX()) < this.width/2) {
+		if (Math.abs(centersVector.getX()) <= this.width/2) {
 			outputs.add(new Vector2D(
 					point.getX(),
 					this.y + Math.signum(centersVector.getY())*this.height/2

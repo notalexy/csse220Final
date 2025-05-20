@@ -46,7 +46,7 @@ public abstract class Entity implements ImageObserver {
 	 * This method gets called once when the object is destroyed
 	 */
 	public void onDeath() {
-		
+		EntityManager.getInstance().scheduleDestroy(this);
 	}
 	
 	/**
@@ -62,4 +62,8 @@ public abstract class Entity implements ImageObserver {
 	
 	public float getX() {return this.x;};
 	public float getY() {return this.y;};
+	public float getTheta() {return this.theta;}
+	public int getWidth() {return this.width;}
+	public int getHeight() {return this.height;}
+	public float getThetavel() {return this.thetavel;}
 }

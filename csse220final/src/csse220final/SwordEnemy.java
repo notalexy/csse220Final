@@ -9,8 +9,13 @@ public class SwordEnemy extends Enemy {
 		this.maxhealth = (int) (scale * 25);
 		this.health = maxhealth;
 		this.accel = 500;
+		
+		this.maxSpeed = (int) (scale * 150);
 		this.behavior = new SwordEnemyBehavior(this);
+		
+		this.addWeapon(new EnemySword(this));
 	}
+	
 
 	@Override
 	public void drawDetails(Graphics2D g2d) {
@@ -28,4 +33,6 @@ public class SwordEnemy extends Enemy {
 		
 		super.update(dt);
 	}
+	
+	
 }

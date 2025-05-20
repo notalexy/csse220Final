@@ -1,5 +1,6 @@
 package csse220final;
 
-public class Weapon {
-
+public interface Weapon {
+	public void attack();
+	public void addToManager();
 }

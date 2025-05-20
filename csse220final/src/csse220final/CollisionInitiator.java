@@ -35,4 +35,5 @@ public abstract class CollisionInitiator extends Collidable {
 		return outputs;
 	}
 
+	public int getRadius() {return this.radius;}
 }

@@ -20,7 +20,6 @@ public abstract class Enemy extends LivingEntity{
 		this.thetavel = 0;
 		this.xvel = 0;
 		this.yvel = 0;
-		this.maxSpeed = 300;
 		
 		this.xvelreq = 0;
 		this.yvelreq = 0;
@@ -35,7 +34,7 @@ public abstract class Enemy extends LivingEntity{
 
 	public void requestVelocity(Vector2D reqVector) {
 		Vector2D newReqVelo = reqVector;
-		if (reqVector.Magnitude() > this.maxSpeed) {
+		if (reqVector.magnitude() > this.maxSpeed) {
 			newReqVelo = reqVector.unit().scalarMultiply(maxSpeed);
 		}
 		this.xvelreq = newReqVelo.getX();

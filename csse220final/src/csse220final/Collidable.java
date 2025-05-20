@@ -33,4 +33,8 @@ public abstract class Collidable extends Entity {
 	 * @return A list with the point nearest to the object and the surface normal of the surface collied with.
 	 */
 	public abstract List<Vector2D> generateCollisionVector(Vector2D point);
+	
+	public boolean isSolid() {
+		return solid;
+	}
 }
