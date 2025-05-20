@@ -1,9 +1,12 @@
 package csse220final;
 
+import java.util.*;
+
 public abstract class LivingEntity extends CollisionInitiator implements Damagable{
 
-	private int health;
-	private int maxhealth;
+	protected int health;
+	protected int maxhealth;
+	protected List<Weapon> weapons;
 	
 	public LivingEntity(float x, float y, int radius) {
 		super(radius);

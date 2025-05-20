@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 
 public class Player extends LivingEntity{
 
-	private java.awt.image.BufferedImage sprite;
-	private boolean spriteLoaded;
+	
 	private static final String FILEPATH = "src/playerbig.png";
 	
 	private int maxSpeed;
@@ -33,6 +32,9 @@ public class Player extends LivingEntity{
 		
 		this.xvelreq = 0;
 		this.yvelreq = 0;
+		
+		this.maxhealth = 100;
+		this.health = this.maxhealth;
 		
 		this.sprite = SpriteLoader.getInstance().getSprite(Player.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);

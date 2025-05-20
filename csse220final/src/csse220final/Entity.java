@@ -14,6 +14,9 @@ public abstract class Entity implements ImageObserver {
 	protected int width;
 	protected int height;
 	
+	protected java.awt.image.BufferedImage sprite;
+	protected boolean spriteLoaded;
+	
 
 	
 	public void update(float dt) {

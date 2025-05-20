@@ -7,8 +7,6 @@ import java.util.*;
 
 public class Wall extends Collidable {
 	
-	private java.awt.image.BufferedImage sprite;
-	private boolean spriteLoaded;
 	private static final String FILEPATH = "src/WallSprite.png";
 	
 	public Wall(float x, float y, int width, int height) {
@@ -93,7 +91,7 @@ public class Wall extends Collidable {
 		
 		return outputs;
 	}
-	
+
 
 
 
