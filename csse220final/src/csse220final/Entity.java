@@ -60,10 +60,12 @@ public abstract class Entity implements ImageObserver {
 		return false;
 	}
 	
-	public float getX() {return this.x;};
-	public float getY() {return this.y;};
+	public float getX() {return this.x;}
+	public float getY() {return this.y;}
 	public float getTheta() {return this.theta;}
 	public int getWidth() {return this.width;}
 	public int getHeight() {return this.height;}
+	public float getXvel() {return this.xvel;}
+	public float getYvel() {return this.yvel;}
 	public float getThetavel() {return this.thetavel;}
 }

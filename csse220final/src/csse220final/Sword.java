@@ -97,6 +97,8 @@ public class Sword extends Collidable implements Weapon {
 		// cling sword to owner
 		this.x = owner.getX();
 		this.y = owner.getY();
+		this.xvel = owner.getXvel();
+		this.yvel = owner.getYvel();
 		this.theta = owner.getTheta();
 
 		super.update(dt);
