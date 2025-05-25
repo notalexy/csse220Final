@@ -3,7 +3,7 @@ package csse220final;
 public class PlayerSword extends Sword {
 
 
-	private static final String FILEPATH = "src/PlayerSword.png";
+	public static final String FILEPATH = "src/PlayerSword.png";
 	
 	public PlayerSword(LivingEntity owner, int damage) {
 		super(owner, damage);
@@ -29,5 +29,6 @@ public class PlayerSword extends Sword {
 		
 		
 	}
+	
 
 }

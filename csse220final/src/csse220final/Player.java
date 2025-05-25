@@ -12,6 +12,7 @@ public class Player extends LivingEntity{
 	private int maxSpeed;
 	private float xvelreq, yvelreq;
 	private final float accel = 1000f;
+	private Weapon Sword, Gun;
 	
 	private float dtlast;
 	
@@ -39,8 +40,8 @@ public class Player extends LivingEntity{
 		this.spriteLoaded = !(this.sprite == null);
 		
 		//add a player sword for testing
-		//this.addWeapon(new PlayerSword(this, 25));
-		//this.addWeapon(new PlayerGun(this, 6, .5f));
+		this.Sword = (new PlayerSword(this, 25));
+		this.Gun = (new PlayerGun(this, 6, .5f));
 		
 	}
 	
@@ -106,5 +107,18 @@ public class Player extends LivingEntity{
 	public void onDeath() {
 		super.onDeath();
 		GameManager.getInstance().playerDie();
+	}
+	
+	/**
+	 * Sets the player's weapon to a gun
+	 */
+	public void addGun() {
+		this.addWeapon(Gun);
+	}
+	/**
+	 * Sets the player's weapon to a sword
+	 */
+	public void addSword() {
+		this.addWeapon(Sword);
 	}
 }

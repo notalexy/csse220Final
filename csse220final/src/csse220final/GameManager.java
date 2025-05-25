@@ -17,6 +17,7 @@ public class GameManager{
 	private JLabel scoreLabel;
 	private JLabel deadLabel;
 	private JLabel restartLabel;
+	private JLabel helpLabel;
 	
 	//stores movements
 	private boolean w, a, s, d, left;
@@ -71,6 +72,11 @@ public class GameManager{
 		this.restartLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
 		this.restartLabel.setVisible(false);
 		
+		this.helpLabel = new JLabel(
+				"<html>You have a very bad feeling about this...<br> You see a very sharp sword to your left, and a gun you do not know how to use to the right<br><br> WASD to move, Left Click to Attack. R to restart, PgDown to close<br>");
+		this.helpLabel.setBounds(GameViewer.SCREEN_WIDTH/2 - 300, GameViewer.SCREEN_HEIGHT/2 - 400, 600, 300);
+		this.helpLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
+		this.helpLabel.setVisible(true);
 	}
 	
 	
@@ -80,6 +86,7 @@ public class GameManager{
 		panel.add(this.scoreLabel);
 		panel.add(this.deadLabel);
 		panel.add(this.restartLabel);
+		panel.add(this.helpLabel);
 	}
 	
 	/**
@@ -107,6 +114,10 @@ public class GameManager{
 		
 		hp.setText("HP: "+ Integer.toString(EntityManager.getInstance().getPlayer().getHealth()));
 		scoreLabel.setText("Score: "+ Integer.toString(this.score));
+		
+		if(EntityManager.getInstance().getPlayer().hasWeapon()) {
+			helpLabel.setVisible(false);
+		}
 	}
 	
 	/**

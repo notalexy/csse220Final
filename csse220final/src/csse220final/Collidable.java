@@ -2,7 +2,10 @@ package csse220final;
 
 import java.util.*;
 
-//TODO: Implement
+/**
+ * Collision class to make an object respond to collisions
+ * Collision works by generating a collision vector, and then seeing if that vector intercepts the intiator
+ */
 public abstract class Collidable extends Entity {
 	protected boolean solid; //Non-solid objects do not push other objects, but still have collision detections
 	

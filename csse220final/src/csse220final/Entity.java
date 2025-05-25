@@ -55,14 +55,13 @@ public abstract class Entity implements ImageObserver {
 	}
 	
 	/**
-	 * Anything specific to how the object is drawn
+	 * Call this to add specific details to how the object is drawn
 	 */
 	public abstract void drawDetails(Graphics2D g2d);
 	
 	@Override
-	//requiredto draw images
+	//required to draw images
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
-		//required to draw images
 		return false;
 	}
 	

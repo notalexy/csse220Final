@@ -5,8 +5,8 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gun extends Collidable implements Weapon{
-	private static final String FILEPATH = "src/Gun.png";
+public class Gun extends Entity implements Weapon{
+	public static final String FILEPATH = "src/Gun.png";
 	
 	// attack stuff
 	protected int damage;
@@ -94,22 +94,6 @@ public class Gun extends Collidable implements Weapon{
 
 	public void setDamage(int newDamage) {
 		this.damage = newDamage;
-	}
-
-	@Override
-	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Vector2D> generateCollisionVector(Vector2D point) {
-		Vector2D centersVector = point.subtract(new Vector2D(this.x, this.y));
-		//return a vector pointing in the direction between the direction of the initiator point with a radius of r
-		List<Vector2D> outputs = new ArrayList<Vector2D>();
-		outputs.add(centersVector.unit().scalarMultiply(10.0f).add(new Vector2D(this.x, this.y)));
-		outputs.add(centersVector.unit());
-		return outputs;
 	}
 
 

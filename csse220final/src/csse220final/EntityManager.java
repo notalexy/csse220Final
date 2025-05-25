@@ -15,6 +15,9 @@ public class EntityManager {
 	
 	private java.util.List<Entity> toRemove;
 	private java.util.List<Entity> toAdd;
+	
+	private java.util.List<Collidable> toAddCollidable;
+	
 	private Player player; //store the player separately to ensure it gets called seprately
 	
 	private final int borderWallSize = 50;
@@ -35,16 +38,20 @@ public class EntityManager {
 	 */
 	private EntityManager() {
 		//Create a list of all entities
+		//mulitple lists are used to make collisions cheap
 		this.entities = new ArrayList<Entity>();
 		this.collidables = new ArrayList<Collidable>();
 		this.initators = new ArrayList<CollisionInitiator>();
 		this.enemies = new ArrayList<Enemy>();
+		//asynch add/remove to avoid concurent modificaitons
 		this.toRemove = new ArrayList<Entity>();
 		this.toAdd = new ArrayList<Entity>();
+		this.toAddCollidable = new ArrayList<Collidable>();
 				
 	}
 	
 	//created after constructing
+	
 	private void startupFuction() {
 		//construct walls around the border
 		int horizontalWalls = GameViewer.SCREEN_WIDTH / borderWallSize;
@@ -71,6 +78,8 @@ public class EntityManager {
 		
 		//spawns the player
 		addPlayer(new Player(GameViewer.SCREEN_WIDTH/ 2, GameViewer.SCREEN_HEIGHT/ 2, 25));
+		addCollidable(new PlayerSwordPickup(300, GameViewer.SCREEN_HEIGHT / 2));
+		addCollidable(new PlayerGunPickup(GameViewer.SCREEN_WIDTH - 300, GameViewer.SCREEN_HEIGHT / 2));
 	}
 	
 	
@@ -119,14 +128,14 @@ public class EntityManager {
 	}
 	
 	//adding and removing entities
-	
+	//specific adders are required to ensure the correct lists get updated to run game logic efficiencly
 	public void addEntity(Entity e) {
 		this.toAdd.add(e);
 	}
 	
 	public void addCollidable(Collidable c) {
 		this.addEntity(c);
-		this.collidables.add(c);
+		this.toAddCollidable.add(c);
 	}
 	
 	public void addInitiator(CollisionInitiator c) {
@@ -145,14 +154,26 @@ public class EntityManager {
 		this.addInitiator(e);
 	}
 	
+	/**
+	 * Returns the number of entities
+	 * @return
+	 */
 	public int getNumberOfEnemies() {
 		return enemies.size();
 	}
 	
+	/**
+	 * Schedules an entity to be deleted
+	 * @param e
+	 */
 	public void scheduleDestroy(Entity e) {
 		this.toRemove.add(e);
 	}
 	
+	
+	/**
+	 * Adds and removes entities scheduled to be added and removed to avoid concurent modifications
+	 */
 	public void updateEntities() {
 		for(Entity e: toRemove) {
 			this.entities.remove(e);
@@ -160,13 +181,18 @@ public class EntityManager {
 			this.initators.remove(e);
 			this.enemies.remove(e);
 		}
-		toRemove.clear();
-		
+
 		for(Entity e: toAdd) {
 			this.entities.add(e);
 		}
 		
+		for(Collidable c: toAddCollidable) {
+			this.collidables.add(c);
+		}
+		
 		toAdd.clear();
+		toAddCollidable.clear();
+		toRemove.clear();
 	}
 
 	

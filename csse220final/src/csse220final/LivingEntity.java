@@ -62,6 +62,7 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 		}
 	}
 	
+	@Override
 	public void onDeath() {
 		super.onDeath();
 		for (Weapon w: weapons) {
@@ -69,7 +70,19 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 		}
 	}
 	
+	/**
+	 * Returns the player health
+	 * @return
+	 */
 	public int getHealth(){ 
 		return this.health;
+	}
+	
+	/**
+	 * Checks if the entity has a weapon
+	 * @return
+	 */
+	public boolean hasWeapon() {
+		return this.weapons.size() != 0;
 	}
 }
