@@ -2,9 +2,14 @@ package csse220final;
 
 public class SwordEnemyBehavior extends EnemyBehavior {
 	float kP = 2; //essentially a phase plane kP gain
+	
 	public SwordEnemyBehavior(SwordEnemy owner) {
 		super(owner);
 	}
+	
+	/**
+	 * Chases the player
+	 */
 	@Override
 	public void update(float dt) {
 		float playerX = EntityManager.getInstance().getPlayer().getX();

@@ -9,9 +9,6 @@ public class Player extends LivingEntity{
 	
 	private static final String FILEPATH = "src/playerbig.png";
 	
-	private int maxSpeed;
-	private float xvelreq, yvelreq;
-	private final float accel = 1000f;
 	private Weapon Sword, Gun;
 	
 	private float dtlast;
@@ -29,10 +26,8 @@ public class Player extends LivingEntity{
 		this.xvel = 0;
 		this.yvel = 0;
 		this.maxSpeed = 300;
-		
-		this.xvelreq = 0;
-		this.yvelreq = 0;
-		
+		this.accel = 1000.0f;
+				
 		this.maxhealth = 100;
 		this.health = this.maxhealth;
 		
@@ -51,41 +46,9 @@ public class Player extends LivingEntity{
 	
 	@Override 
 	public void update(float dt) {
-		this.dtlast = dt;
-		//update player
-	
-		
-				
-		
-		
-		
-		
 		super.update(dt);
-		
-		
-		
 	}
 	
-	public void requestVelocity(Vector2D reqVector) {
-			Vector2D newReqVelo = reqVector;
-		if (reqVector.magnitude() > this.maxSpeed) {
-			newReqVelo = reqVector.unit().scalarMultiply(maxSpeed);
-		}
-		this.xvelreq = newReqVelo.getX();
-		this.yvelreq = newReqVelo.getY();
-		
-		float xveldiff = this.xvelreq - this.xvel;
-		float yveldiff = this.yvelreq - this.yvel;
-		
-		
-		
-		xveldiff = Math.max(-accel*dtlast, Math.min(xveldiff, accel*dtlast));
-		yveldiff = Math.max(-accel*dtlast, Math.min(yveldiff, accel*dtlast));
-		
-		this.xvel += xveldiff;
-		this.yvel += yveldiff;
-		
-	}
 	
 	public void requestPointTo(Vector2D target) {
 		Vector2D currentPos = new Vector2D(this.x, this.y);

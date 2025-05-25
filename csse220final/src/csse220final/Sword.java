@@ -24,6 +24,11 @@ public class Sword extends Collidable implements Weapon {
 
 	protected boolean swinging;
 
+	/**
+	 * Construct a new sword
+	 * @param owner The entity that owns the weapon
+	 * @param damage How much damage the sword does
+	 */
 	public Sword(LivingEntity owner, int damage) {
 		this.owner = owner;
 		this.damage = damage;
@@ -102,7 +107,7 @@ public class Sword extends Collidable implements Weapon {
 		this.theta = owner.getTheta();
 
 		super.update(dt);
-
+		//make sword swing
 		if (this.swinging) {
 			this.thetaOffset += dt * this.swingSpeed;
 			if (thetaOffset > arc/2) {
@@ -110,6 +115,7 @@ public class Sword extends Collidable implements Weapon {
 				thetaOffset = -arc / 2;
 			}
 		}
+		//increment cooldown
 		this.cooldown -= dt;
 	}
 

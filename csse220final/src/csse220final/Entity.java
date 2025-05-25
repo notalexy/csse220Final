@@ -22,7 +22,10 @@ public abstract class Entity implements ImageObserver {
 	protected boolean spriteLoaded;
 	
 
-	
+	/**
+	 * 
+	 * @param dt
+	 */
 	public void update(float dt) {
 		this.x += this.xvel*dt;
 		this.y += this.yvel*dt;

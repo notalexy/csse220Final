@@ -215,7 +215,8 @@ public class GameManager{
 	public void incrementHealingCondition() {
 		// TODO Auto-generated method stub
 		Player p = EntityManager.getInstance().getPlayer();
-		if (p.getHealth() == this.lasthealth && EntityManager.getInstance().getNumberOfEnemies() == 0) {
+		System.out.println( EntityManager.getInstance().getNumberOfEnemies());
+		if (p.getHealth() == this.lasthealth && EntityManager.getInstance().getNumberOfEnemies() <= 1) {
 			p.onDamage(-10, 2);
 		}
 		this.lasthealth = p.getHealth();
