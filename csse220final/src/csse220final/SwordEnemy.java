@@ -12,7 +12,7 @@ public class SwordEnemy extends Enemy {
 		this.maxSpeed = (int) (scale * 150);
 		this.behavior = new SwordEnemyBehavior(this);
 		
-		this.addWeapon(new EnemySword(this, (int)(5.0 * scale)));
+		this.addWeapon(new EnemySword(this, (int)(8.0 * scale)));
 	}
 	
 

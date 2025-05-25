@@ -9,7 +9,9 @@ public class EnemySpawner {
 
 	}
 	public void update(float currentTime) {
-		if (currentTime > (lastSpawnTime + maxSpawnTime)) {
+		if (currentTime >= (lastSpawnTime + maxSpawnTime -
+				((EntityManager.getInstance().getNumberOfEnemies() < 1) ? 10.0f : 0)
+				)) {
 			GameManager.getInstance().incrementWave();
 			spawn(GameManager.getInstance().getWave(), currentTime);
 		}
@@ -21,9 +23,11 @@ public class EnemySpawner {
 		if (wave > 5) {
 			scaling += wave*.1;
 		}
-		
+		int numEnemies = (int)Math.floor(wave / 3) + 1;
+		for(int i = 0; i < numEnemies; i++) {
 		EntityManager.getInstance().addEnemy(new SwordEnemy(GameViewer.SCREEN_WIDTH / 2 + (float)(500*(Math.random() - 0.5)),
 				GameViewer.SCREEN_HEIGHT/ 2 + (float)( 250 * (Math.random() - 0.5)), 25, scaling));
+		}
 		this.lastSpawnTime = currentTime;
 	}
 }

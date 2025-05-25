@@ -17,15 +17,21 @@ public class GamePanel extends JComponent{
 	private JFrame parentFrame;
 	
 	public GamePanel(JFrame parentFrame) {
-		//create the one and only game manager
+		//create the one and only game manager and init drawing
+		GameManager.getInstance().initDraw(this);
 		
 		this.parentFrame = parentFrame;
+
 		
 		//send things to game manager
 		parentFrame.addKeyListener(new KeyAdapter() {
 			@Override
 		    public void keyPressed(KeyEvent e) {
 					//immediately feed it to the manager
+				switch (e.getKeyCode()) { 
+		        case KeyEvent.VK_R: GameManager.destroy();  
+		        break;
+		      }	
 					GameManager.getInstance().keyPressed(e);
 				}
 				

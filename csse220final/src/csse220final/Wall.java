@@ -68,7 +68,7 @@ public class Wall extends Collidable {
 					Math.signum(centersVector.getY())
 					));
 		}
-		else if (Math.abs(centersVector.getY()) < this.height/2) {
+		else if (Math.abs(centersVector.getY()) <= this.height/2) {
 			outputs.add(new Vector2D(
 					this.x + Math.signum(centersVector.getX())*this.width/2,
 					point.getY()

@@ -89,7 +89,6 @@ public class Sword extends Collidable implements Weapon {
 	@Override
 	public void addToManager() {
 		EntityManager.getInstance().addCollidable(this);
-
 	}
 
 	@Override

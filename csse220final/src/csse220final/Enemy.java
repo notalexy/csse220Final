@@ -58,6 +58,11 @@ public abstract class Enemy extends LivingEntity{
 		this.theta = direction;
 
 	}
+	
+	public void onDeath() {
+		super.onDeath();
+		GameManager.getInstance().addKill();
+	}
 	@Override 
 	public void update(float dt){
 		this.behavior.update(dt);

@@ -26,6 +26,11 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 			this.onDeath();
 	}
 
+	/**
+	 * Prevents movement in the direction of a solid entity
+	 * @param other collidable
+	 * @param direction of collision
+	 */
 	@Override
 	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
 		if (other.isSolid()) {
@@ -62,5 +67,9 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 		for (Weapon w: weapons) {
 			EntityManager.getInstance().scheduleDestroy((Entity) w);
 		}
+	}
+	
+	public int getHealth(){ 
+		return this.health;
 	}
 }

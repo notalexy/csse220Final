@@ -4,6 +4,10 @@ import java.awt.*;
 import java.awt.image.*;
 import java.awt.geom.*;
 
+/**
+ * Entity class which most classes extends
+ * 
+ */
 public abstract class Entity implements ImageObserver {
 	protected float x;
 	protected float y;
@@ -47,6 +51,7 @@ public abstract class Entity implements ImageObserver {
 	 */
 	public void onDeath() {
 		EntityManager.getInstance().scheduleDestroy(this);
+		
 	}
 	
 	/**
@@ -55,11 +60,13 @@ public abstract class Entity implements ImageObserver {
 	public abstract void drawDetails(Graphics2D g2d);
 	
 	@Override
+	//requiredto draw images
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
 		//required to draw images
 		return false;
 	}
 	
+	//getters
 	public float getX() {return this.x;}
 	public float getY() {return this.y;}
 	public float getTheta() {return this.theta;}

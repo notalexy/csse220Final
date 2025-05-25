@@ -106,6 +106,7 @@ public class Player extends LivingEntity{
 
 	@Override
 	public void onDeath() {
-		GameManager.destroy();
+		super.onDeath();
+		GameManager.getInstance().playerDie();
 	}
 }

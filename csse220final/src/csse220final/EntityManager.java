@@ -82,7 +82,9 @@ public class EntityManager {
 	 * @param dt Time since last update
 	 */
 	public void updateAllEntities(float dt) {
+		//purge dead entities
 		removeEntities();
+		//check collisions first, O(n^2) time complexity
 		for(CollisionInitiator i : initators) {
 			for(Collidable c : collidables) {
 				if (c != i) { //prevent self-collsion
@@ -90,6 +92,7 @@ public class EntityManager {
 				}
 			}
 		}
+		//move entities after collisions are checked
 		for(Entity e:entities) {
 			e.update(dt);
 		}
@@ -151,6 +154,7 @@ public class EntityManager {
 			this.entities.remove(e);
 			this.collidables.remove(e);
 			this.initators.remove(e);
+			this.enemies.remove(e);
 		}
 	}
 }
