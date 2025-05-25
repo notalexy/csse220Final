@@ -22,7 +22,7 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	@Override
 	public void update(float dt) {
 		super.update(dt);
-		if (this.health < 0)
+		if (this.health <= 0)
 			this.onDeath();
 	}
 
@@ -46,8 +46,8 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	}
 
 	public void onDamage(int damage, int team) {
-		if (this.team != team) { //prevent firendly fire
-		this.health -= damage;
+		if (this.team != team) { //prevent friendly fire
+		this.health = Math.clamp(this.health - damage, 0, this.maxhealth);
 		}
 	}
 

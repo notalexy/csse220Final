@@ -14,6 +14,7 @@ public class EntityManager {
 	private java.util.List<Enemy> enemies;
 	
 	private java.util.List<Entity> toRemove;
+	private java.util.List<Entity> toAdd;
 	private Player player; //store the player separately to ensure it gets called seprately
 	
 	private final int borderWallSize = 50;
@@ -39,6 +40,7 @@ public class EntityManager {
 		this.initators = new ArrayList<CollisionInitiator>();
 		this.enemies = new ArrayList<Enemy>();
 		this.toRemove = new ArrayList<Entity>();
+		this.toAdd = new ArrayList<Entity>();
 				
 	}
 	
@@ -83,7 +85,7 @@ public class EntityManager {
 	 */
 	public void updateAllEntities(float dt) {
 		//purge dead entities
-		removeEntities();
+		updateEntities();
 		//check collisions first, O(n^2) time complexity
 		for(CollisionInitiator i : initators) {
 			for(Collidable c : collidables) {
@@ -98,7 +100,7 @@ public class EntityManager {
 		}
 		
 	}
-	
+
 	/**
 	 * Draws every entity
 	 * @param g2d
@@ -117,7 +119,7 @@ public class EntityManager {
 	//adding and removing entities
 	
 	public void addEntity(Entity e) {
-		this.entities.add(e);
+		this.toAdd.add(e);
 	}
 	
 	public void addCollidable(Collidable c) {
@@ -149,12 +151,21 @@ public class EntityManager {
 		this.toRemove.add(e);
 	}
 	
-	public void removeEntities() {
+	public void updateEntities() {
 		for(Entity e: toRemove) {
 			this.entities.remove(e);
 			this.collidables.remove(e);
 			this.initators.remove(e);
 			this.enemies.remove(e);
 		}
+		toRemove.clear();
+		
+		for(Entity e: toAdd) {
+			this.entities.add(e);
+		}
+		
+		toAdd.clear();
 	}
+
+	
 }

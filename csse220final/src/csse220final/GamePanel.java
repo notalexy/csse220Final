@@ -18,7 +18,7 @@ public class GamePanel extends JComponent{
 	
 	public GamePanel(JFrame parentFrame) {
 		//create the one and only game manager and init drawing
-		GameManager.getInstance().initDraw(this);
+		startGame();
 		
 		this.parentFrame = parentFrame;
 
@@ -29,7 +29,11 @@ public class GamePanel extends JComponent{
 		    public void keyPressed(KeyEvent e) {
 					//immediately feed it to the manager
 				switch (e.getKeyCode()) { 
-		        case KeyEvent.VK_R: GameManager.destroy();  
+		        case KeyEvent.VK_R:{
+		        	GameManager.getInstance().cleanUp();
+		        	GameManager.destroy();
+		        	startGame();
+		        }
 		        break;
 		      }	
 					GameManager.getInstance().keyPressed(e);
@@ -58,7 +62,7 @@ public class GamePanel extends JComponent{
 			}
 		});
 		
-		//start animati0on timer
+		//start animation timer
 		Timer animationTimer = new Timer(1/fps, e -> update());
 		animationTimer.start();
 		
@@ -83,5 +87,13 @@ public class GamePanel extends JComponent{
 		super.paintComponent(g);
 		java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
 		GameManager.getInstance().draw(g2d);
+	}
+	
+	public JFrame getParentFrame() {
+		return this.parentFrame;
+	}
+	
+	private void startGame() {
+    	GameManager.getInstance().initDraw(this);
 	}
 }

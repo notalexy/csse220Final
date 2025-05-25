@@ -18,9 +18,6 @@ public class Player extends LivingEntity{
 	public Player(float x, float y, int r) {
 		super(x, y, r);
 		
-		this.width = r*2;
-		this.height = r*2;
-		
 		//prevent friendly fire
 		this.team = Damagable.PLAYER_TEAM;
 		

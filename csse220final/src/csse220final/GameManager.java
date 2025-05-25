@@ -13,10 +13,10 @@ public class GameManager{
 	private static GameManager gameManager; //singleton
 	private EnemySpawner spawner;
 	//labels are static to work on game restart
-	private static JLabel hp;
-	private static JLabel scoreLabel;
-	private static JLabel deadLabel;
-	private static JLabel restartLabel;
+	private JLabel hp;
+	private JLabel scoreLabel;
+	private JLabel deadLabel;
+	private JLabel restartLabel;
 	
 	//stores movements
 	private boolean w, a, s, d, left;
@@ -25,6 +25,8 @@ public class GameManager{
 	private int wave;
 	private float currentTime = 0;
 	private int score = 0;
+	
+	private int lasthealth = 100;
 	
 	private GamePanel panel;
 	
@@ -50,24 +52,25 @@ public class GameManager{
 		//makes a new entityManager
 		this.spawner = new EnemySpawner();
 		
-		GameManager.hp = new JLabel();
-		GameManager.hp.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
-		GameManager.hp.setBounds(70, 70, 200, 50);
+		this.hp = new JLabel();
+		this.hp.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
+		this.hp.setBounds(70, 70, 200, 50);
 		
-		GameManager.scoreLabel = new JLabel();
-		GameManager.scoreLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
-		GameManager.scoreLabel.setBounds(70, 120, 200, 50);
+		this.scoreLabel = new JLabel();
+		this.scoreLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
+		this.scoreLabel.setBounds(70, 120, 200, 50);
 
 		
-		GameManager.deadLabel = new JLabel("Ded!");
-		GameManager.deadLabel.setBounds(GameViewer.SCREEN_WIDTH/2 - 150, GameViewer.SCREEN_HEIGHT/2 - 150, 300, 300);
-		GameManager.deadLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 128));
-		GameManager.deadLabel.setVisible(false);
+		this.deadLabel = new JLabel("Ded!");
+		this.deadLabel.setBounds(GameViewer.SCREEN_WIDTH/2 - 150, GameViewer.SCREEN_HEIGHT/2 - 150, 300, 300);
+		this.deadLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 128));
+		this.deadLabel.setVisible(false);
 		
-		GameManager.restartLabel = new JLabel("Press R to Restart");
-		GameManager.restartLabel.setBounds(GameViewer.SCREEN_WIDTH/2 - 150, GameViewer.SCREEN_HEIGHT/2 - 150, 300, 300);
-		GameManager.restartLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
-		GameManager.restartLabel.setVisible(false);
+		this.restartLabel = new JLabel("Press R to Restart");
+		this.restartLabel.setBounds(GameViewer.SCREEN_WIDTH/2 - 150, GameViewer.SCREEN_HEIGHT/2, 300, 300);
+		this.restartLabel.setFont(new Font(hp.getFont().getName(), Font.PLAIN, 26));
+		this.restartLabel.setVisible(false);
+		
 	}
 	
 	
@@ -187,6 +190,28 @@ public class GameManager{
 		this.deadLabel.setVisible(true);
 		this.restartLabel.setVisible(true);
 	}
+	
+	public void cleanUp() {
+		
+		panel.remove(hp);
+		panel.remove(scoreLabel);
+		panel.remove(deadLabel);
+		panel.remove(restartLabel);
+		
+	}
+
+	//adds a way for the player to heal
+	public void incrementHealingCondition() {
+		// TODO Auto-generated method stub
+		Player p = EntityManager.getInstance().getPlayer();
+		if (p.getHealth() == this.lasthealth) {
+			p.onDamage(-10, 2);
+		}
+		this.lasthealth = p.getHealth();
+		
+	}
+
+
 
 	
 }

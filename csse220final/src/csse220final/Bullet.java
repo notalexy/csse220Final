@@ -15,30 +15,44 @@ public class Bullet extends CollisionInitiator implements Damagable {
 		this.y = y;
 		this.damage = damage;
 		this.team = team;
+		
+		this.sprite = SpriteLoader.getInstance().getSprite(Bullet.FILEPATH);
+		this.spriteLoaded = !(this.sprite == null);
 	}
 
 	@Override
 	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
 		if (other instanceof Damagable) {
 			((Damagable) other).onDamage(damage, this.team);
+			this.damage = 0; //prevent double damage due to bullet getting destoryed later in the loop
 		}
 		if (other.isSolid()) {
 			onDeath();
 		}
 		
 	}
+	
 
 	@Override
 	public void drawDetails(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		
+		if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
 	}
 	
-	//allows for shooting bullets out of hte air
+	//allows for shooting bullets out of the air
 	@Override
 	public void onDamage(int damage, int team) {
 		this.onDeath();
 		
 	}
+
+	public void addToManager() {
+		EntityManager.getInstance().addInitiator(this);
+	}
+	
+	@Override
+	public void onDeath() {
+		super.onDeath();
+	}
+	
 
 }

@@ -12,6 +12,8 @@ public abstract class CollisionInitiator extends Collidable {
 	
 	public CollisionInitiator(int radius) {
 		this.radius = radius;
+		this.width = radius*2;
+		this.height = radius*2;
 	}
 	
 	public void initiateCollision(Collidable other) {

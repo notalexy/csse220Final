@@ -10,7 +10,7 @@ public class EnemySword extends Sword {
 		
 		//geometry
 		this.width = 25;
-		this.height = 50;
+		this.height = 45;
 		this.yOffset = this.height / 2.0f + owner.getRadius();
 		
 		//attacking properties

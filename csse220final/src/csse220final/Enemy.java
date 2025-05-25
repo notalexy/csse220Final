@@ -8,10 +8,7 @@ public abstract class Enemy extends LivingEntity{
 	protected EnemyBehavior behavior;
 	
 	public Enemy(float x, float y, int r, float scaling) {
-		super(x, y, r);
-		this.width = r*2;
-		this.height = r*2;
-		
+		super(x, y, r);	
 		
 		
 		//initialize to zero

@@ -47,7 +47,8 @@ public class Sword extends Collidable implements Weapon {
 		// prevent self-collision
 		if (other != this.owner) {
 			// check if it collides with a damagable object
-			if (this.cooldown <= 0) {
+			//do not damage if sword is not swinging or is on cooldown
+			if (this.cooldown <= 0 && thetaOffset != -arc / 2) {
 				if (other instanceof Damagable) {
 					((Damagable) other).onDamage(damage, this.team);
 					this.cooldown = this.cooldownAfterHit;
@@ -64,7 +65,7 @@ public class Sword extends Collidable implements Weapon {
 
 		// restrict length of sword vector if its far from stuff
 		if (ownerVector.magnitude() > owner.getRadius() + this.length) {
-			ownerVector = ownerVector.unit().scalarMultiply(owner.getRadius() + this.length);
+			ownerVector = ownerVector.unit().scalarMultiply(owner.getRadius() + this.length + this.yOffset);
 		}
 
 		List<Vector2D> outputs = new ArrayList<Vector2D>();
