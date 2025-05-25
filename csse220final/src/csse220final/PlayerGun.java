@@ -10,11 +10,13 @@ public class PlayerGun extends Gun{
 		Vector2D offsetVector = new Vector2D(0, this.height / 2.5f + owner.getRadius()).rotate((float) (-Math.PI/6));
 		this.xOffset = offsetVector.getX();
 		this.yOffset = offsetVector.getY();
+		this.bulletSpeed = 1000f;
+		this.spread = 0.5f;
 		
 
 		
 		//attacking properties
-		this.cooldownAfterShot = 0.75f;
+		this.cooldownAfterShot = cooldown;
 		
 		this.team = Damagable.PLAYER_TEAM;
 		

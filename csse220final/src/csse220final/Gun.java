@@ -21,6 +21,8 @@ public class Gun extends Collidable implements Weapon{
 	
 	protected float cooldown = 0; // cooldown to prevent sword from repeatedly hitting
 	protected float cooldownAfterShot;
+	protected float bulletSpeed;
+	protected float spread;
 	
 	public Gun(LivingEntity owner, int damage, float cooldown) {
 		this.sprite = SpriteLoader.getInstance().getSprite(Gun.FILEPATH);
@@ -41,13 +43,13 @@ public class Gun extends Collidable implements Weapon{
 		if(this.cooldown <= 0) {
 			//add player velocity to shot
 			Vector2D ownerVel = new Vector2D(owner.getXvel(), owner.getYvel());
-			float randomOffset = (float) (Math.random() - 0.5f)*0.3f;
-			Vector2D bulletVel = ownerVel.add((new Vector2D(0, -500).rotate(theta + randomOffset)));
+			float randomOffset = (float) (Math.random() - 0.5f)*spread;
+			Vector2D bulletVel = ownerVel.add((new Vector2D(0, -this.bulletSpeed).rotate(theta + randomOffset)));
 			
 			//spawn bullet at gun
 			Vector2D offsetVector = new Vector2D(this.x, this.y).add(
 					new Vector2D(this.xOffset, -this.yOffset).rotate(theta));
-			Bullet b = new Bullet(10, this.damage, Damagable.ENEMY_TEAM, offsetVector.getX(), offsetVector.getY(), bulletVel.getX(), bulletVel.getY());
+			Bullet b = new Bullet(10, this.damage, this.team, offsetVector.getX(), offsetVector.getY(), bulletVel.getX(), bulletVel.getY());
 			
 			b.addToManager();
 			this.cooldown = cooldownAfterShot;

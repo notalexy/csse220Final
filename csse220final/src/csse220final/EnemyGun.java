@@ -10,6 +10,10 @@ public class EnemyGun extends Gun{
 		Vector2D offsetVector = new Vector2D(0, this.height / 2.5f + owner.getRadius()).rotate((float) (-Math.PI/6));
 		this.xOffset = offsetVector.getX();
 		this.yOffset = offsetVector.getY();
+		this.bulletSpeed = 500f;
+		this.spread = 0.3f;
+		//randomize cooldown to avoid multiple enemies shooting at once and blocking each other
+		this.cooldown = (float)Math.random(); 
 		
 
 		

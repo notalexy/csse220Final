@@ -15,7 +15,7 @@ public class GunEnemy extends Enemy {
 		this.behavior = new GunEnemyBehavior(this);
 		this.angVelTarget = scale * .3f;
 		
-		this.addWeapon(new EnemyGun(this, (int)(4.0 * scale), 1.0f / scale));
+		this.addWeapon(new EnemyGun(this, (int)(4.0 * scale), .5f / scale));
 	}
 	
 

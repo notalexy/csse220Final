@@ -39,7 +39,8 @@ public class Player extends LivingEntity{
 		this.spriteLoaded = !(this.sprite == null);
 		
 		//add a player sword for testing
-		this.addWeapon(new PlayerSword(this, 25));
+		//this.addWeapon(new PlayerSword(this, 25));
+		//this.addWeapon(new PlayerGun(this, 6, .5f));
 		
 	}
 	
