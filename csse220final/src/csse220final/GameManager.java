@@ -191,8 +191,12 @@ public class GameManager{
       }	
 	}
 	
-	public void addKill() {
-		this.score++;
+	/**
+	 * Increments the score
+	 * @param scoreToAdd
+	 */
+	public void addScore(int scoreToAdd) {
+		this.score+= scoreToAdd;
 	}
 	
 	public void playerDie() {

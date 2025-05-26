@@ -19,7 +19,6 @@ public class EnemyGun extends Gun{
 		//randomize cooldown to avoid multiple enemies shooting at once and blocking each other
 		this.cooldown = (float)Math.random(); 
 		
-
 		
 		//attacking properties		
 		this.team = Damagable.ENEMY_TEAM;

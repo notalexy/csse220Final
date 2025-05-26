@@ -39,7 +39,10 @@ public class PowerUp extends Collidable implements Damagable{
 			((LivingEntity) other).onDamage(-PowerUp.HP_TO_HEAL, 2);
 			EntityManager.getInstance().addEntity(
 					new TextParticle("+" + DAMAGE_TO_ADD + " Strength", this.x - this.width, this.y - this.radius*3.0f,
-							((LivingEntity)other).getTeam() == 1 ? Color.RED : Color.GREEN ));
+							((LivingEntity)other).getTeam() == Damagable.ENEMY_TEAM ? Color.RED : Color.GREEN ));
+			if (((LivingEntity) other).getTeam() == Damagable.PLAYER_TEAM) {
+				GameManager.getInstance().addScore(5);
+			}
 		}
 		
 		onDeath(); //kill it if it collides with anythign else

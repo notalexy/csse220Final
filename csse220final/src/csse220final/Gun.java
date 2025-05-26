@@ -41,7 +41,7 @@ public class Gun extends Entity implements Weapon{
 		this.spriteLoaded = !(this.sprite == null);
 		this.owner = owner;
 		this.damage = damage;
-		this.cooldown = cooldownAfterShot;
+		this.cooldownAfterShot = cooldown;
 		
 	}
 

@@ -29,7 +29,7 @@ public abstract class Enemy extends LivingEntity{
 	
 	public void onDeath() {
 		super.onDeath();
-		GameManager.getInstance().addKill();
+		GameManager.getInstance().addScore(10);
 	}
 	
 	@Override 
