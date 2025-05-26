@@ -34,13 +34,6 @@ public class Wall extends Collidable {
 
 	}
 
-
-	@Override
-	public void drawDetails(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		 if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
-	}
-
 	@Override
 	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
 		//doNothing

@@ -55,6 +55,10 @@ public class EnemySpawner {
 						GameViewer.SCREEN_HEIGHT / 2 + (float) (500 * (Math.random() - 0.5)), 25, scaling));
 			}
 		}
+		//spawn a powerup at every wave
+		EntityManager.getInstance().addCollidable(
+				new PowerUp(GameViewer.SCREEN_WIDTH / 2 + (float) (800 * (Math.random() - 0.5)),
+						GameViewer.SCREEN_HEIGHT / 2 + (float) (500 * (Math.random() - 0.5))));
 		this.lastSpawnTime = currentTime;
 
 		

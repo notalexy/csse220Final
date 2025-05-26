@@ -30,12 +30,6 @@ public class Bullet extends CollisionInitiator implements Damagable {
 		
 	}
 	
-
-	@Override
-	public void drawDetails(Graphics2D g2d) {
-		if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
-	}
-	
 	//allows for shooting bullets out of the air
 	@Override
 	public void onDamage(int damage, int team) {

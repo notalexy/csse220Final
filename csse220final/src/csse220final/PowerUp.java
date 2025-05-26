@@ -9,7 +9,8 @@ import java.util.List;
  */
 public class PowerUp extends Collidable implements Damagable{
 	private int radius;
-	
+	private static final int DAMAGE_TO_ADD = 1;
+	protected static final String FILEPATH = "src/PowerUp.png";
 	
 	
 	public PowerUp(float x, float y) {
@@ -26,7 +27,13 @@ public class PowerUp extends Collidable implements Damagable{
 
 	@Override
 	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
-		// TODO Auto-generated method stub
+		
+		if(other instanceof LivingEntity) { //only increment damage if its a living entity
+			((LivingEntity) other).addDamage(DAMAGE_TO_ADD);
+			((LivingEntity) other).onDamage(-2, 2);
+		}
+		
+		onDeath(); //kill it if it collides with anythign else
 		
 	}
 

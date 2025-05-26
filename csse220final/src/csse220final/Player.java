@@ -44,11 +44,6 @@ public class Player extends LivingEntity{
 	}
 	
 	@Override
-	public void drawDetails(Graphics2D g2d) {
-		 if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
-	}
-
-	@Override
 	public void onDeath() {
 		super.onDeath();
 		GameManager.getInstance().playerDie();

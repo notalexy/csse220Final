@@ -73,7 +73,9 @@ public abstract class Entity implements ImageObserver {
 	/**
 	 * Call this to add specific details to how the object is drawn
 	 */
-	public abstract void drawDetails(Graphics2D g2d);
+	public void drawDetails(Graphics2D g2d) {
+		if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);
+	}
 	
 	@Override
 	//required to draw images
