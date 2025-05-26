@@ -13,8 +13,7 @@ public class PlayerGunPickup extends Collidable {
 	
 	public PlayerGunPickup(int x, int y) {
 		
-		this.x = x;
-		this.y = y;
+		super(x, y);
 		//geometry
 		this.width = 25;
 		this.height = 45;		

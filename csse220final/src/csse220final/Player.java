@@ -19,12 +19,6 @@ public class Player extends LivingEntity{
 		//prevent friendly fire
 		this.team = Damagable.PLAYER_TEAM;
 		
-		
-		//initialize to zero
-		this.theta = 0;
-		this.thetavel = 0;
-		this.xvel = 0;
-		this.yvel = 0;
 		this.maxSpeed = 300;
 		this.accel = 1000.0f;
 				
@@ -49,18 +43,6 @@ public class Player extends LivingEntity{
 		super.update(dt);
 	}
 	
-	
-	public void requestPointTo(Vector2D target) {
-		Vector2D currentPos = new Vector2D(this.x, this.y);
-		float direction = target.subtract(currentPos).angle() + (float)Math.PI/2;
-		this.theta = direction;
-		
-		
-		
-		
-	}
-
-
 	@Override
 	public void drawDetails(Graphics2D g2d) {
 		 if (spriteLoaded) g2d.drawImage(this.sprite, -width/2, -height/2, width, height, this);

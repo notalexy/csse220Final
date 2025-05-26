@@ -5,6 +5,10 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * A class to represent both the gun's visual and the ability to shoot
+ */
 public class Gun extends Entity implements Weapon{
 	public static final String FILEPATH = "src/Gun.png";
 	
@@ -19,23 +23,26 @@ public class Gun extends Entity implements Weapon{
 	protected float thetaOffset;
 	protected LivingEntity owner;
 	
-	protected float cooldown = 0; // cooldown to prevent sword from repeatedly hitting
+	protected float cooldown = 0;
 	protected float cooldownAfterShot;
 	protected float bulletSpeed;
 	protected float spread;
+	private static final int BULLET_SIZE = 10;
 	
+	/**
+	 * Creates a new gun and attaches it to the owner
+	 * @param owner the entity thta owns the gun
+	 * @param damage How much damage it does
+	 * @param cooldown How long must be waited inbetween shots
+	 */
 	public Gun(LivingEntity owner, int damage, float cooldown) {
+		super(0, 0);
 		this.sprite = SpriteLoader.getInstance().getSprite(Gun.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);
 		this.owner = owner;
 		this.damage = damage;
 		this.cooldown = cooldownAfterShot;
 		
-		// initialize to zero
-		this.theta = 0;
-		this.thetavel = 0;
-		this.xvel = 0;
-		this.yvel = 0;
 	}
 
 	@Override
@@ -43,13 +50,15 @@ public class Gun extends Entity implements Weapon{
 		if(this.cooldown <= 0) {
 			//add player velocity to shot
 			Vector2D ownerVel = new Vector2D(owner.getXvel(), owner.getYvel());
+			
+			//spread is bi-directional
 			float randomOffset = (float) (Math.random() - 0.5f)*spread;
 			Vector2D bulletVel = ownerVel.add((new Vector2D(0, -this.bulletSpeed).rotate(theta + randomOffset)));
 			
 			//spawn bullet at gun
 			Vector2D offsetVector = new Vector2D(this.x, this.y).add(
 					new Vector2D(this.xOffset, -this.yOffset).rotate(theta));
-			Bullet b = new Bullet(10, this.damage, this.team, offsetVector.getX(), offsetVector.getY(), bulletVel.getX(), bulletVel.getY());
+			Bullet b = new Bullet(Gun.BULLET_SIZE, this.damage, this.team, offsetVector.getX(), offsetVector.getY(), bulletVel.getX(), bulletVel.getY());
 			
 			b.addToManager();
 			this.cooldown = cooldownAfterShot;
@@ -73,11 +82,6 @@ public class Gun extends Entity implements Weapon{
 	}
 
 	@Override
-	public void addToManager() {
-		EntityManager.getInstance().addEntity(this);
-	}
-
-	@Override
 	public void update(float dt) {
 		// cling sword to owner
 		this.x = owner.getX();
@@ -94,6 +98,11 @@ public class Gun extends Entity implements Weapon{
 
 	public void setDamage(int newDamage) {
 		this.damage = newDamage;
+	}
+
+	@Override
+	public int getDamage() {
+		return this.damage;
 	}
 
 

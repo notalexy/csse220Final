@@ -30,13 +30,9 @@ public class Sword extends Collidable implements Weapon {
 	 * @param damage How much damage the sword does
 	 */
 	public Sword(LivingEntity owner, int damage) {
+		super(0, 0);
 		this.owner = owner;
 		this.damage = damage;
-		// initialize to zero
-		this.theta = 0;
-		this.thetavel = 0;
-		this.xvel = 0;
-		this.yvel = 0;
 	}
 
 	@Override
@@ -47,6 +43,14 @@ public class Sword extends Collidable implements Weapon {
 
 	}
 
+	/**
+	 * Adds the sword to the entitymanager as a collidable
+	 */
+	@Override
+	public void addToManager() {
+		EntityManager.getInstance().addCollidable(this);
+	}
+	
 	@Override
 	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
 		// prevent self-collision
@@ -93,11 +97,6 @@ public class Sword extends Collidable implements Weapon {
 	}
 
 	@Override
-	public void addToManager() {
-		EntityManager.getInstance().addCollidable(this);
-	}
-
-	@Override
 	public void update(float dt) {
 		// cling sword to owner
 		this.x = owner.getX();
@@ -121,5 +120,11 @@ public class Sword extends Collidable implements Weapon {
 
 	public void setDamage(int newDamage) {
 		this.damage = newDamage;
+	}
+
+
+	@Override
+	public int getDamage() {
+		return this.damage;		
 	}
 }

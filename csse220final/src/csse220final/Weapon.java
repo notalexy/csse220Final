@@ -1,6 +1,7 @@
 package csse220final;
 
 public interface Weapon {
+
 	/**
 	 * Command to make the weapon attack
 	 */
@@ -8,5 +9,11 @@ public interface Weapon {
 	/**
 	 * Add the weapon to the entity manager. This must be called after the constructor
 	 */
-	public void addToManager();
+	public default void addToManager() {
+		//weapons are always entities
+		EntityManager.getInstance().addEntity((Entity)this);
+	}
+	
+	public void setDamage(int damage);
+	public int getDamage();
 }

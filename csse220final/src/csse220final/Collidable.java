@@ -7,6 +7,11 @@ import java.util.*;
  * Collision works by generating a collision vector, and then seeing if that vector intercepts the intiator
  */
 public abstract class Collidable extends Entity {
+	
+	public Collidable(float x, float y) {
+		super(x, y);
+	}
+
 	protected boolean solid; //Non-solid objects do not push other objects, but still have collision detections
 	
 	//collisions is ASYMMETRIC. There are collision initiators and collision responders. 

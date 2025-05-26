@@ -2,8 +2,12 @@ package csse220final;
 
 import java.awt.Graphics2D;
 
+/**
+ * A gun enemy has a gun and shoots at the player
+ */
 public class GunEnemy extends Enemy {
 	
+	//gun enemy tries to circle the player
 	private float angVelTarget;
 
 	public GunEnemy(float x, float y, int r, float scale) {

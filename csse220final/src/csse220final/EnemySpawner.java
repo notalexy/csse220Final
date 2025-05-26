@@ -1,5 +1,8 @@
 package csse220final;
 
+/**
+ * Class to decide when to spawn entities and then spawn them
+ */
 public class EnemySpawner {
 	private final float maxSpawnTime = 15.0f;
 	private float lastSpawnTime;

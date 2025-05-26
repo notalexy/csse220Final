@@ -10,12 +10,21 @@ public abstract class CollisionInitiator extends Collidable {
 	
 	//collision initators are ALL circles
 	
-	public CollisionInitiator(int radius) {
+	/**
+	 * Creates a collision initiator. They must all be circles.
+	 * @param radius
+	 */
+	public CollisionInitiator(float x, float y, int radius) {
+		super(x, y);
 		this.radius = radius;
 		this.width = radius*2;
 		this.height = radius*2;
 	}
 	
+	/**
+	 * Requests the other entity to create a collision vector and see if that vector intersects this enitty
+	 * @param other The other entity to check
+	 */
 	public void initiateCollision(Collidable other) {
 		List<Vector2D> collisionValues  = other.generateCollisionVector(new Vector2D(this.x, this.y));
 		Vector2D point = collisionValues.get(0);
@@ -27,6 +36,9 @@ public abstract class CollisionInitiator extends Collidable {
 		}
 	}
 
+	/**
+	 * Generates a collision vector pointing towards the other entity
+	 */
 	@Override
 	public List<Vector2D> generateCollisionVector(Vector2D point) {
 		Vector2D centersVector = point.subtract(new Vector2D(this.x, this.y));

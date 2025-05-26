@@ -4,25 +4,22 @@ import java.awt.*;
 import java.util.List;
 import java.util.*;
 
-
+/**
+ * Walls block movement of all objects
+ */
 public class Wall extends Collidable {
 	
 	private static final String FILEPATH = "src/WallSprite.png";
 	
 	public Wall(float x, float y, int width, int height) {
+		super(x, y);
 		this.solid = true;
-		this.x = x;
-		this.y = y;
+		
 		this.width = width;
 		this.height = height;
-		
-		
-		
+
 		//walls do not move or rotate
-		this.theta = 0;
-		this.thetavel = 0;
-		this.xvel = 0;
-		this.yvel = 0;
+		
 		
 		this.sprite = SpriteLoader.getInstance().getSprite(Wall.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);
@@ -49,6 +46,10 @@ public class Wall extends Collidable {
 		//doNothing
 	}
 
+	/**
+	 * The wall collision vector is a combination of 4 lines.
+	 * The wall will return the appropriate point based on where the entity is.
+	 */
 	@Override
 	public List<Vector2D> generateCollisionVector(Vector2D point) {
 		List<Vector2D> outputs = new ArrayList<Vector2D>();
@@ -79,8 +80,7 @@ public class Wall extends Collidable {
 					));
 		}
 		
-		else {
-			
+		else {	
 		//object is (possibly) touching a corner
 		outputs.add(new Vector2D(
 				Math.signum(centersVector.getX())*this.width/2,

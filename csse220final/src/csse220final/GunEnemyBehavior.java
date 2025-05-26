@@ -1,16 +1,17 @@
 package csse220final;
-
+/**
+ * Gun enemy behavior. The gun enemy tries to keep a fixed distance around the player and will then circle them constantly
+ */
 public class GunEnemyBehavior extends EnemyBehavior {
 	float kP = 40; //essentially a phase plane kP gain
 	
 	float thetaTarget = 0;
 	float targetDistance = 300;
-	
-	private GunEnemy owner;
-	
+		
 	public GunEnemyBehavior(GunEnemy owner) {
 		super(owner);
-		this.owner = owner;
+		
+		//seed the target angle
 		float playerX = EntityManager.getInstance().getPlayer().getX();
 		float playerY = EntityManager.getInstance().getPlayer().getY();
 		thetaTarget = (float) Math.atan2(owner.getY() - playerY, owner.getX() - playerX);
@@ -22,7 +23,7 @@ public class GunEnemyBehavior extends EnemyBehavior {
 		float playerY = EntityManager.getInstance().getPlayer().getY();
 		
 		Vector2D playerVector = new Vector2D(playerX, playerY);
-		thetaTarget += this.owner.getAngVelTarget()*dt;
+		thetaTarget +=  ((GunEnemy) this.owner).getAngVelTarget()*dt;
 		
 		Vector2D targetPosition = new Vector2D(1, 0).scalarMultiply(this.targetDistance).rotate(thetaTarget).add(playerVector);
 		

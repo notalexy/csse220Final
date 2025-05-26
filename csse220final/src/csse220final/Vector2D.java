@@ -81,6 +81,10 @@ public class Vector2D {
 	
 	//other properties
 	
+	/**
+	 * 
+	 * @return A unit vector of the vector
+	 */
 	public Vector2D unit() {
 		//avoid divide by zero
 		if (this.x == 0 && this.y == 0) {
@@ -89,6 +93,10 @@ public class Vector2D {
 		return new Vector2D((float)(this.x / Math.sqrt(this.x*this.x + this.y*this.y)), (float)(this.y / Math.sqrt(this.x*this.x + this.y*this.y)));
 	}
 	
+	/**
+	 * 
+	 * @return The 2-norm of the vector
+	 */
 	public float magnitude() {
 		return (float)Math.sqrt((this.x*this.x + this.y*this.y));
 	}
@@ -97,6 +105,10 @@ public class Vector2D {
 		return ("X: " + this.x + " Y: " + this.y);
 	}
 	
+	/**
+	 * 
+	 * @return The angle of the vector
+	 */
 	public float angle() {
 		return (float)Math.atan2((double)this.y, (double)this.x);
 	}

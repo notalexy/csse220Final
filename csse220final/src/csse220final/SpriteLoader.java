@@ -7,6 +7,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class to load sprites to memory once. If a sprite is already loaded, the correct sprite will just return
+ */
 public class SpriteLoader {
 	private static SpriteLoader spriteloader;
 	private Map<String, java.awt.image.BufferedImage> sprites;
@@ -18,6 +21,10 @@ public class SpriteLoader {
 		this.sprites = new HashMap<String, java.awt.image.BufferedImage>();
 	}
 	
+	/**
+	 * Singleton get instance
+	 * @return The one and only spriteloader
+	 */
 	public static SpriteLoader getInstance() {
 		if (SpriteLoader.spriteloader == null) {
 			SpriteLoader.spriteloader = new SpriteLoader();

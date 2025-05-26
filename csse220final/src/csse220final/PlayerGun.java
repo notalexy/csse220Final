@@ -1,5 +1,8 @@
 package csse220final;
 
+/**
+ * A gun that specifically has the properties for the player
+ */
 public class PlayerGun extends Gun{
 	public PlayerGun(LivingEntity owner, int damage, float cooldown) {
 		super(owner, damage, cooldown);

@@ -21,7 +21,20 @@ public abstract class Entity implements ImageObserver {
 	protected java.awt.image.BufferedImage sprite;
 	protected boolean spriteLoaded;
 	
-
+	/**
+	 * Initializes an entity
+	 * @param x X position
+	 * @param y Y position
+	 */
+	public Entity(float x, float y) {
+		this.x = x;
+		this.y = y;
+		
+		this.xvel = 0;
+		this.yvel = 0;
+		this.theta = 0;
+		this.thetavel = 0;
+	}
 	/**
 	 * 
 	 * @param dt

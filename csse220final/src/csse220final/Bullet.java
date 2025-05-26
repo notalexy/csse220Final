@@ -8,13 +8,11 @@ public class Bullet extends CollisionInitiator implements Damagable {
 	private static final String FILEPATH = "src/bullet.png";
 	
 	public Bullet(int radius, int damage, int team, float x, float y, float xvel, float yvel) {
-		super(radius);
-		this.xvel = xvel;
-		this.yvel = yvel;
-		this.x = x;
-		this.y = y;
+		super(x, y, radius);
 		this.damage = damage;
 		this.team = team;
+		this.xvel = xvel;
+		this.yvel = yvel;
 		
 		this.sprite = SpriteLoader.getInstance().getSprite(Bullet.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);

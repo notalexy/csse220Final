@@ -2,6 +2,10 @@ package csse220final;
 
 import java.util.*;
 
+/**
+ * Living entities are entities which have health, can die after losing health, and can wield weapons.
+ * Living entities also has methods to request changes in velocity
+ */
 public abstract class LivingEntity extends CollisionInitiator implements Damagable {
 
 	protected int health;
@@ -15,15 +19,18 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	//can have no weapons
 	protected List<Weapon> weapons;
 	
-	//used to block friendly fire
+	//used to prevent friendly fire
 	protected int team;
 	
 	
-	
+	/**
+	 * Creates the living entity variables for an entity
+	 * @param x X position of the entity
+	 * @param y Y position of enemy
+	 * @param radius The radius of the entity
+	 */
 	public LivingEntity(float x, float y, int radius) {
-		super(radius);
-		this.x = x;
-		this.y = y;
+		super(x, y, radius);
 		
 		this.xvelreq = 0;
 		this.yvelreq = 0;
@@ -90,18 +97,26 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 			w.attack();
 		}
 	}
-	
+	/**
+	 * Requests the entity to move at a targeted velocity. 
+	 * Velocities are limited by both maximum velocity and acceleration
+	 * @param reqVector A velocity vector to reach
+	 */
 	public void requestVelocity(Vector2D reqVector) {
 		Vector2D newReqVelo = reqVector;
+		
+		//cap to max speed
 		if (reqVector.magnitude() > this.maxSpeed) {
 			newReqVelo = reqVector.unit().scalarMultiply(maxSpeed);
 		}
+		
 		this.xvelreq = newReqVelo.getX();
 		this.yvelreq = newReqVelo.getY();
 
 		float xveldiff = this.xvelreq - this.xvel;
 		float yveldiff = this.yvelreq - this.yvel;
-
+		
+		//limit acceleration
 		xveldiff = Math.max(-this.accel * dtlast, Math.min(xveldiff, this.accel * dtlast));
 		yveldiff = Math.max(-this.accel * dtlast, Math.min(yveldiff, this.accel * dtlast));
 
@@ -110,9 +125,20 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 
 	}
 	
+	/**
+	 * Requests the entity to point to a certain point
+	 * @param target The point to point at
+	 */
+	public void requestPointTo(Vector2D target) {
+		Vector2D currentPos = new Vector2D(this.x, this.y);
+		float direction = target.subtract(currentPos).angle() + (float)Math.PI/2;
+		this.theta = direction;
+	}
+	
 	@Override
 	public void onDeath() {
 		super.onDeath();
+		//weapons must be purged from the manager to avoid lag
 		for (Weapon w: weapons) {
 			EntityManager.getInstance().scheduleDestroy((Entity) w);
 		}
@@ -132,5 +158,11 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	 */
 	public boolean hasWeapon() {
 		return this.weapons.size() != 0;
+	}
+	
+	public void addDamage(int damage) {
+		for(Weapon w:weapons) {
+			w.setDamage(w.getDamage() + damage);
+		}
 	}
 }
