@@ -17,6 +17,9 @@ public class GunEnemyBehavior extends EnemyBehavior {
 		thetaTarget = (float) Math.atan2(owner.getY() - playerY, owner.getX() - playerX);
 	}
 	
+	/**
+	 * Actually try to stay away from the player and go there
+	 */
 	@Override
 	public void update(float dt) {
 		float playerX = EntityManager.getInstance().getPlayer().getX();

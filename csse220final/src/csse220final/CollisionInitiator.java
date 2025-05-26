@@ -12,7 +12,9 @@ public abstract class CollisionInitiator extends Collidable {
 	
 	/**
 	 * Creates a collision initiator. They must all be circles.
-	 * @param radius
+	 * @param x X position
+	 * @param y Y position
+	 * @param radius 
 	 */
 	public CollisionInitiator(float x, float y, int radius) {
 		super(x, y);
@@ -38,6 +40,7 @@ public abstract class CollisionInitiator extends Collidable {
 
 	/**
 	 * Generates a collision vector pointing towards the other entity
+	 * @param the centerpoint of the collision initiator
 	 */
 	@Override
 	public List<Vector2D> generateCollisionVector(Vector2D point) {

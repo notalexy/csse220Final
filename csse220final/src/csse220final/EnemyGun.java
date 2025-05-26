@@ -8,6 +8,7 @@ public class EnemyGun extends Gun{
 		super(owner, damage, cooldown);
 		
 		//geometry
+		//spawns a specific gun with these properties
 		this.width = 25;
 		this.height = 45;
 		Vector2D offsetVector = new Vector2D(0, this.height / 2.5f + owner.getRadius()).rotate((float) (-Math.PI/6));
@@ -20,9 +21,7 @@ public class EnemyGun extends Gun{
 		
 
 		
-		//attacking properties
-		this.cooldownAfterShot = 1.5f;
-		
+		//attacking properties		
 		this.team = Damagable.ENEMY_TEAM;
 		
 	

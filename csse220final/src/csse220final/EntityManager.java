@@ -21,6 +21,10 @@ public class EntityManager {
 	private Player player; //store the player separately to ensure it gets called seprately
 	
 	private final int borderWallSize = 50;
+	
+	private final int WEAPON_OFFSET = 300;
+	
+	
 	/**
 	 * Singleton get instance command, should always be called when interacting with the entity manager
 	 * @return The one and only entityManager
@@ -52,6 +56,9 @@ public class EntityManager {
 	
 	//created after constructing
 	
+	/**
+	 * Spawns the entities required to play the game
+	 */
 	private void startupFuction() {
 		//construct walls around the border
 		int horizontalWalls = GameViewer.SCREEN_WIDTH / borderWallSize;
@@ -78,8 +85,8 @@ public class EntityManager {
 		
 		//spawns the player
 		addPlayer(new Player(GameViewer.SCREEN_WIDTH/ 2, GameViewer.SCREEN_HEIGHT/ 2, 25));
-		addCollidable(new PlayerSwordPickup(300, GameViewer.SCREEN_HEIGHT / 2));
-		addCollidable(new PlayerGunPickup(GameViewer.SCREEN_WIDTH - 300, GameViewer.SCREEN_HEIGHT / 2));
+		addCollidable(new PlayerSwordPickup(WEAPON_OFFSET, GameViewer.SCREEN_HEIGHT / 2));
+		addCollidable(new PlayerGunPickup(GameViewer.SCREEN_WIDTH - WEAPON_OFFSET, GameViewer.SCREEN_HEIGHT / 2));
 	}
 	
 	

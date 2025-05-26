@@ -11,6 +11,7 @@ import javax.swing.*;
  */
 public class GameViewer {
 	// warning: system scaling affects this
+	//dimensions of my screen
 	public static final int SCREEN_WIDTH = 1706;
 	public static final int SCREEN_HEIGHT = 1066 - 32;
 	public static final Dimension WINDOW_SIZE = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);

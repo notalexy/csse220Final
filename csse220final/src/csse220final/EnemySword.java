@@ -8,7 +8,7 @@ public class EnemySword extends Sword {
 	public EnemySword(LivingEntity owner, int damage) {
 		super(owner, damage);
 		
-		//geometry
+		//geometry for specifically the enemy sword
 		this.width = 25;
 		this.height = 45;
 		this.yOffset = this.height / 2.0f + owner.getRadius();

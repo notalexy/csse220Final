@@ -6,7 +6,12 @@ package csse220final;
 public class EnemySpawner {
 	private final float maxSpawnTime = 15.0f;
 	private float lastSpawnTime;
-
+	private static final int SCALING_START = 5; //wave to start scalling
+	private static final float SCALING_RATE = 0.05f;
+	private static final int WAVES_TO_ADD_ENEMY = 3;
+	private static final int X_ENEMY_SPREAD = 800;
+	private static final int Y_ENEMY_SPREAD = 500;
+	
 	// empty constructor
 	public EnemySpawner() {
 	}
@@ -32,33 +37,33 @@ public class EnemySpawner {
 
 	private void spawn(int wave, float currentTime) {
 		float scaling = 1;
-		//heal the player before spawning stuff
+		//check for a perfect clear
 		GameManager.getInstance().incrementHealingCondition();
 		
 		//Increase enemy stats and numbers as waves progress
-		if (wave > 5) {
-			scaling += (wave - 5) * .05;
+		if (wave > SCALING_START) {
+			scaling += (wave - SCALING_START) * SCALING_RATE;
 		}
-		int numEnemies = (int) Math.floor(wave / 3) + 1;
+		int numEnemies = (int) Math.floor(wave / WAVES_TO_ADD_ENEMY) + 1;
 		
 		//spawn multiple enemies
 		for (int i = 0; i < numEnemies; i++) {
 			//random check to chose what enemy to spawn
 			if (Math.random() < .5) {
 				EntityManager.getInstance()
-						.addEnemy(new GunEnemy(GameViewer.SCREEN_WIDTH / 2 + (float) (800 * (Math.random() - 0.5)),
-								GameViewer.SCREEN_HEIGHT / 2 + (float) (500 * (Math.random() - 0.5)), 25, scaling));
+						.addEnemy(new GunEnemy(GameViewer.SCREEN_WIDTH / 2 + (float) (X_ENEMY_SPREAD * (Math.random() - 0.5)),
+								GameViewer.SCREEN_HEIGHT / 2 + (float) (Y_ENEMY_SPREAD * (Math.random() - 0.5)), Enemy.DEFAULT_RADIUS, scaling));
 			}
 			else {
 				EntityManager.getInstance()
-				.addEnemy(new SwordEnemy(GameViewer.SCREEN_WIDTH / 2 + (float) (800 * (Math.random() - 0.5)),
-						GameViewer.SCREEN_HEIGHT / 2 + (float) (500 * (Math.random() - 0.5)), 25, scaling));
+				.addEnemy(new SwordEnemy(GameViewer.SCREEN_WIDTH / 2 + (float) (X_ENEMY_SPREAD * (Math.random() - 0.5)),
+						GameViewer.SCREEN_HEIGHT / 2 + (float) (Y_ENEMY_SPREAD * (Math.random() - 0.5)), Enemy.DEFAULT_RADIUS, scaling));
 			}
 		}
 		//spawn a powerup at every wave
 		EntityManager.getInstance().addCollidable(
-				new PowerUp(GameViewer.SCREEN_WIDTH / 2 + (float) (800 * (Math.random() - 0.5)),
-						GameViewer.SCREEN_HEIGHT / 2 + (float) (500 * (Math.random() - 0.5))));
+				new PowerUp(GameViewer.SCREEN_WIDTH / 2 + (float) (X_ENEMY_SPREAD * (Math.random() - 0.5)),
+						GameViewer.SCREEN_HEIGHT / 2 + (float) (Y_ENEMY_SPREAD * (Math.random() - 0.5))));
 		this.lastSpawnTime = currentTime;
 
 		
