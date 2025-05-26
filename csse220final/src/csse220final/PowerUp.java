@@ -8,7 +8,7 @@ import java.util.List;
  * A
  */
 public class PowerUp extends Collidable implements Damagable{
-	private int radius;
+	private final int radius = 32;
 	private static final int DAMAGE_TO_ADD = 1;
 	protected static final String FILEPATH = "src/PowerUp.png";
 	
@@ -16,7 +16,10 @@ public class PowerUp extends Collidable implements Damagable{
 	public PowerUp(float x, float y) {
 		super(x, y);
 		
-		this.sprite = SpriteLoader.getInstance().getSprite(Enemy.FILEPATH);
+		this.width = this.radius;
+		this.height = this.radius;
+		
+		this.sprite = SpriteLoader.getInstance().getSprite(PowerUp.FILEPATH);
 		this.spriteLoaded = !(this.sprite == null);
 	}
 	@Override
@@ -49,10 +52,4 @@ public class PowerUp extends Collidable implements Damagable{
 		outputs.add(centersVector.unit());
 		return outputs;
 	}
-	@Override
-	public void drawDetails(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
