@@ -1,15 +1,17 @@
 package csse220final;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A
+ * Power up class
  */
 public class PowerUp extends Collidable implements Damagable{
 	private final int radius = 32;
 	private static final int DAMAGE_TO_ADD = 1;
+	private static final int HP_TO_HEAL = 2;
 	protected static final String FILEPATH = "src/PowerUp.png";
 	
 	
@@ -34,7 +36,10 @@ public class PowerUp extends Collidable implements Damagable{
 		if(other instanceof LivingEntity) { //only increment damage if its a living entity
 			//avoiding this instanceof is unreasliably awkward
 			((LivingEntity) other).addDamage(DAMAGE_TO_ADD);
-			((LivingEntity) other).onDamage(-2, 2);
+			((LivingEntity) other).onDamage(-PowerUp.HP_TO_HEAL, 2);
+			EntityManager.getInstance().addEntity(
+					new TextParticle("+" + DAMAGE_TO_ADD + " Strength", this.x - this.width, this.y - this.radius*3.0f,
+							((LivingEntity)other).getTeam() == 1 ? Color.RED : Color.GREEN ));
 		}
 		
 		onDeath(); //kill it if it collides with anythign else

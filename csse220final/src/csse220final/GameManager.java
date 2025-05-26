@@ -2,6 +2,7 @@ package csse220final;
 
 import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 
@@ -27,7 +28,7 @@ public class GameManager{
 	private float currentTime = 0;
 	private int score = 0;
 	
-	private int lasthealth = 100;
+	private int lasthealth = 500;
 	
 	private GamePanel panel;
 	
@@ -209,13 +210,17 @@ public class GameManager{
 		
 	}
 
-	//adds a way for the player to heal
+	/**
+	 * Used to heal the player when they perform well
+	 */
 	public void incrementHealingCondition() {
-		// TODO Auto-generated method stub
+		
 		Player p = EntityManager.getInstance().getPlayer();
-		System.out.println( EntityManager.getInstance().getNumberOfEnemies());
 		if (p.getHealth() == this.lasthealth && EntityManager.getInstance().getNumberOfEnemies() <= 1) {
 			p.onDamage(-10, 2);
+			EntityManager.getInstance().addEntity(
+					new TextParticle("Perfect Clear ", GameViewer.SCREEN_WIDTH / 2 - 100, 100,
+							Color.GREEN, 2.0f));
 		}
 		this.lasthealth = p.getHealth();
 		

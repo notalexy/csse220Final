@@ -77,6 +77,7 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	 */
 	public void onDamage(int damage, int team) {
 		if (this.team != team) { //prevent friendly fire
+			//display text to make damage obvious
 			if (this.team == Damagable.PLAYER_TEAM) {
 				if (damage < 0) {
 					EntityManager.getInstance().addEntity(
@@ -187,5 +188,9 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 		for(Weapon w:weapons) {
 			w.setDamage(w.getDamage() + damage);
 		}
+	}
+	
+	public int getTeam() {
+		return this.team;
 	}
 }
