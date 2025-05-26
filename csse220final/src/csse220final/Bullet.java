@@ -20,7 +20,8 @@ public class Bullet extends CollisionInitiator implements Damagable {
 
 	@Override
 	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
-		if (other instanceof Damagable) {
+		if (other instanceof Damagable && this.damage != 0) { //only damage entities that can be damaged
+			//avoiding this instanceof is unreasonably awkward
 			((Damagable) other).onDamage(damage, this.team);
 			this.damage = 0; //prevent double damage due to bullet getting destoryed later in the loop
 		}

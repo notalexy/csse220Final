@@ -1,5 +1,6 @@
 package csse220final;
 
+import java.awt.Color;
 import java.util.*;
 
 /**
@@ -76,7 +77,29 @@ public abstract class LivingEntity extends CollisionInitiator implements Damagab
 	 */
 	public void onDamage(int damage, int team) {
 		if (this.team != team) { //prevent friendly fire
-		this.health = Math.clamp(this.health - damage, 0, this.maxhealth);
+			if (this.team == Damagable.PLAYER_TEAM) {
+				if (damage < 0) {
+					EntityManager.getInstance().addEntity(
+							new TextParticle("+" + Math.abs(damage), this.x, this.y - this.getRadius()*1.5f, Color.GREEN));
+				} else {
+					EntityManager.getInstance().addEntity(
+					new TextParticle("-" + damage, this.x, this.y - this.getRadius()*1.5f, Color.RED));
+				}
+					
+			}
+			
+			if (this.team == Damagable.ENEMY_TEAM) {
+				if (damage < 0) {
+					EntityManager.getInstance().addEntity(
+							new TextParticle("+" + Math.abs(damage), this.x, this.y - this.getRadius()*1.5f, Color.ORANGE));
+				} else {
+					EntityManager.getInstance().addEntity(
+					new TextParticle("-" + damage, this.x, this.y - this.getRadius()*1.5f, Color.MAGENTA));
+				}
+					
+			}
+			this.health = Math.clamp(this.health - damage, 0, this.maxhealth);
+			
 		}
 	}
 

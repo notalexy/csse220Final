@@ -142,8 +142,6 @@ public class GameManager{
 		return this.wave;
 	}
 	
-	//mouse stuff: CONSIDER SPLITTING CLASS
-	
 	//sends information to player
 	public void requestStuffToPlayer(int xpos, int ypos) {
 		int yvel = (s ? 1 : 0) - (w ? 1 : 0);

@@ -32,6 +32,7 @@ public class PowerUp extends Collidable implements Damagable{
 	public void respondToCollision(Collidable other, Vector2D collisionDirection) {
 		
 		if(other instanceof LivingEntity) { //only increment damage if its a living entity
+			//avoiding this instanceof is unreasliably awkward
 			((LivingEntity) other).addDamage(DAMAGE_TO_ADD);
 			((LivingEntity) other).onDamage(-2, 2);
 		}

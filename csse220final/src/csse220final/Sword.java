@@ -58,7 +58,8 @@ public class Sword extends Collidable implements Weapon {
 			// check if it collides with a damagable object
 			//do not damage if sword is not swinging or is on cooldown
 			if (this.cooldown <= 0 && thetaOffset != -arc / 2) {
-				if (other instanceof Damagable) {
+				if (other instanceof Damagable) { //only damage entities that can be damaged
+					//avoiding this instanceof is unreasliably awkward
 					((Damagable) other).onDamage(damage, this.team);
 					this.cooldown = this.cooldownAfterHit;
 				}

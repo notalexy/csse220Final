@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public class PlayerSwordPickup extends Collidable {
-	private int radius;
+	private int radius = 10;
 	
 	
 	public PlayerSwordPickup(int x, int y) {
